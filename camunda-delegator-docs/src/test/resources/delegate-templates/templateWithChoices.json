@@ -1,0 +1,80 @@
+[
+  {
+    "name": "demoDelegate_generateProductPriority",
+    "id": "Generated_demoDelegate_generateProductPriority",
+    "appliesTo": [
+      "bpmn:ServiceTask"
+    ],
+    "properties": [
+      {
+        "label": "Delegate expression",
+        "type": "String",
+        "value": "${demoDelegate_generateProductPriority}",
+        "editable": false,
+        "binding": {
+          "type": "property",
+          "name": "camunda:delegateExpression"
+        }
+      },
+      {
+        "label": "string",
+        "type": "String",
+        "binding": {
+          "type": "camunda:inputParameter",
+          "name": "string"
+        },
+        "constraints": {
+          "notEmpty": true
+        }
+      },
+      {
+        "label": "int",
+        "type": "String",
+        "binding": {
+          "type": "camunda:inputParameter",
+          "name": "int"
+        },
+        "constraints": {
+          "notEmpty": false
+        }
+      },
+      {
+        "label": "result",
+        "type": "String",
+        "binding": {
+          "type": "camunda:outputParameter",
+          "source": "${result}"
+        }
+      },
+      {
+        "label": "testString",
+        "type": "String",
+        "binding": {
+          "type": "camunda:outputParameter",
+          "source": "${testString}"
+        }
+      },
+      {
+        "label": "exceptionProcessingStrategy",
+        "type": "Dropdown",
+        "binding": {
+          "type": "camunda:inputParameter",
+          "name": "exceptionProcessingStrategy"
+        },
+        "choices": [
+          {
+            "name": "test1",
+            "value": "value1"
+          },
+          {
+            "name": "test2",
+            "value": "value2"
+          }
+        ]
+      }
+    ],
+    "entriesVisible": {
+      "_all": true
+    }
+  }
+]

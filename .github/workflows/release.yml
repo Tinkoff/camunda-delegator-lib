@@ -1,0 +1,34 @@
+name: Publish Plugin
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  publish-plugin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '8'
+          distribution: 'adopt'
+
+      - name: Gradle wrapper validation
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=tag::${GITHUB_REF##*/v}
+
+      - name: Publish package
+        run: gradle publish
+        env:
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.SIGNING_PASSWORD }}
+          RELEASE_VERSION: ${{ steps.get_version.outputs.tag }}

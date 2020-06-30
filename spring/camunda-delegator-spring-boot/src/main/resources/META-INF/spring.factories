@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  ru.tinkoff.top.camunda.delegator.springboot.CamundaDelegatorAutoConfiguration, \
+  ru.tinkoff.top.camunda.delegator.springboot.DelegatorDocsAutoConfiguration

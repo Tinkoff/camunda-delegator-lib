@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1mx3tfa" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.4.0">
+  <bpmn:process id="simpleProcess" name="simpleProcess" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1khm1wt</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1khm1wt" sourceRef="StartEvent_1" targetRef="kotlinDelegateActivity" />
+    <bpmn:sequenceFlow id="Flow_06m5ksg" sourceRef="kotlinDelegateActivity" targetRef="javaDelegateActivity" />
+    <bpmn:endEvent id="Event_1ojnh9j">
+      <bpmn:incoming>Flow_0gc8w5i</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="kotlinDelegateActivity" name="Kotlin delegate" camunda:delegateExpression="${kotlinSimpleDelegate_params}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="testRequired">requiredValue</camunda:inputParameter>
+          <camunda:outputParameter name="delegateResultMapping">${delegateResult}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1khm1wt</bpmn:incoming>
+      <bpmn:outgoing>Flow_06m5ksg</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0gc8w5i" sourceRef="javaDelegateActivity" targetRef="Event_1ojnh9j" />
+    <bpmn:serviceTask id="javaDelegateActivity" name="Java delegate" camunda:delegateExpression="${javaSimpleDelegate_optionalParams}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="test">javaTestParams</camunda:inputParameter>
+          <camunda:outputParameter name="javaResultMapping">${javaResult}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_06m5ksg</bpmn:incoming>
+      <bpmn:outgoing>Flow_0gc8w5i</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="simpleProcess">
+      <bpmndi:BPMNEdge id="Flow_1khm1wt_di" bpmnElement="Flow_1khm1wt">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="390" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06m5ksg_di" bpmnElement="Flow_06m5ksg">
+        <di:waypoint x="490" y="117" />
+        <di:waypoint x="560" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0gc8w5i_di" bpmnElement="Flow_0gc8w5i">
+        <di:waypoint x="660" y="117" />
+        <di:waypoint x="802" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ab2515_di" bpmnElement="kotlinDelegateActivity">
+        <dc:Bounds x="390" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ojnh9j_di" bpmnElement="Event_1ojnh9j">
+        <dc:Bounds x="802" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1jmpg43_di" bpmnElement="javaDelegateActivity">
+        <dc:Bounds x="560" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

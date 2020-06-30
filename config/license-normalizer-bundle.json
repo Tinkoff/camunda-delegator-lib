@@ -1,0 +1,65 @@
+{
+  "bundles": [
+    {
+      "bundleName": "Apache-2.0",
+      "licenseName": "Apache License, Version 2.0",
+      "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "bundleName": "EPL-1.0",
+      "licenseName": "Eclipse Public License - v 1.0",
+      "licenseUrl": "http://www.eclipse.org/legal/epl-v10.html"
+    },
+    {
+      "bundleName": "EPL-2.0",
+      "licenseName": "Eclipse Public License - v 2.0",
+      "licenseUrl": "http://www.eclipse.org/legal/epl-v20.html"
+    },
+    {
+      "bundleName": "MIT",
+      "licenseName": "The MIT License (MIT)"
+    }
+  ],
+  "transformationRules": [
+    {
+      "bundleName": "Apache-2.0",
+      "licenseNamePattern": ".*The Apache Software License, Version 2\\.0.*"
+    },
+    {
+      "bundleName": "Apache-2.0",
+      "licenseNamePattern": "Apache[ |-|_]2.*"
+    },
+    {
+      "bundleName": "Apache-2.0",
+      "licenseNamePattern": "ASL 2\\.0"
+    },
+    {
+      "bundleName": "Apache-2.0",
+      "licenseNamePattern": ".*Apache License,?( Version)? 2.*"
+    },
+    {
+      "bundleName": "Apache-2.0",
+      "licenseUrlPattern": ".*(www\\.)?opensource\\.org/licenses/Apache-2\\.0.*"
+    },
+    {
+      "bundleName": "Apache-2.0",
+      "licenseUrlPattern": ".*www\\.apache\\.org/licenses/LICENSE-2\\.0.*"
+    },
+    {
+      "bundleName": "Apache-2.0",
+      "licenseFileContentPattern": ".*Apache License,?( Version)? 2.*"
+    },
+    {
+      "bundleName": "EPL-1.0",
+      "licenseNamePattern": "Eclipse Public License.*(v|version)\\.?\\s?1(\\.?0)?"
+    },
+    {
+      "bundleName": "EPL-2.0",
+      "licenseNamePattern": "Eclipse Public License v. 2.0"
+    },
+    {
+      "bundleName": "MIT",
+      "licenseNamePattern": ".*MIT License.*"
+    }
+  ]
+}
