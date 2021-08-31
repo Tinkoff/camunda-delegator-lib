@@ -1,4 +1,4 @@
-name: Java CI
+name: Verify PR
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - '*.md'
 
 jobs:
-  publish-plugin:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

@@ -1,0 +1,48 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: [bug, triage]
+assignees:
+  - bespaltovyj
+body:
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists for the bug you encountered.
+      options:
+        - label: I have searched the existing issues
+          required: true
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: camunda-version
+    attributes:
+      label: camunda-version
+      value: "7.13.0"
+    validations:
+      required: true
+  - type: textarea
+    id: camunda-delegator-version
+    attributes:
+      label: camunda-delegator-version
+      value: "5.0.3"
+    validations:
+      required: true
+  - type: textarea
+    id: spring-boot-version
+    attributes:
+      label: spring-boot-version
+      value: "2.4.2"
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+      value: "A bug happened!"
+    validations:
+      required: true

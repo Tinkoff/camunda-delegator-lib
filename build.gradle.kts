@@ -11,7 +11,7 @@ plugins {
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
 
     id("com.github.jk1.dependency-license-report") version "1.17"
-    id("org.jmailen.kotlinter") version "3.5.1"
+    id("org.jmailen.kotlinter") version "3.6.0"
     id("org.jetbrains.dokka") version "1.5.0"
 }
 
@@ -108,9 +108,6 @@ subprojects {
                     from("${project.rootDir}/LICENSE")
                 }
             )
-
-            // https://youtrack.jetbrains.com/issue/KT-46165
-            duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         }
         compileKotlin {
             kotlinOptions.jvmTarget = "1.8"
@@ -143,6 +140,13 @@ subprojects {
                 pom {
                     name.set("Camunda delegator lib")
                     description.set("This project provides declarative camunda delegates for Spring based application")
+                    url.set("https://github.com/TinkoffCreditSystems/camunda-delegator-lib")
+
+                    scm {
+                        connection.set("scm:git:https://www.github.com/TinkoffCreditSystems/camunda-delegator-lib")
+                        developerConnection.set("scm:git:https://github.com/TinkoffCreditSystems/camunda-delegator-lib")
+                        url.set("https://github.com/TinkoffCreditSystems/camunda-delegator-lib")
+                    }
 
                     licenses {
                         license {
@@ -153,6 +157,7 @@ subprojects {
                     }
                     developers {
                         developer {
+                            id.set("bespaltovyj")
                             name.set("Pavel Pletnev")
                             email.set("p.pletnev@tinkoff.ru")
                         }
@@ -203,7 +208,7 @@ subprojects {
         // kotlin
         api("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
         api("org.jetbrains.kotlin:kotlin-reflect")
-        api("io.github.microutils:kotlin-logging:2.0.10")
+        api("io.github.microutils:kotlin-logging:2.0.11")
 
         // camunda
         api("org.camunda.bpm:camunda-engine:$camundaVersion")
