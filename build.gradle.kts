@@ -143,6 +143,13 @@ subprojects {
                 pom {
                     name.set("Camunda delegator lib")
                     description.set("This project provides declarative camunda delegates for Spring based application")
+                    url.set("https://github.com/TinkoffCreditSystems/camunda-delegator-lib")
+
+                    scm {
+                        connection.set("scm:git:https://www.github.com/TinkoffCreditSystems/camunda-delegator-lib")
+                        developerConnection.set("scm:git:https://github.com/TinkoffCreditSystems/camunda-delegator-lib")
+                        url.set("https://github.com/TinkoffCreditSystems/camunda-delegator-lib")
+                    }
 
                     licenses {
                         license {
@@ -153,6 +160,7 @@ subprojects {
                     }
                     developers {
                         developer {
+                            id.set("bespaltovyj")
                             name.set("Pavel Pletnev")
                             email.set("p.pletnev@tinkoff.ru")
                         }
