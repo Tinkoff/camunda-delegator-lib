@@ -12,7 +12,7 @@ This project provides declarative camunda delegates for Spring based application
 
 Add dependency in gradle
 ```kotlin
-implementation(group = "ru.tinkoff.bpm", name = "camunda-delegator-spring-boot-starter", version = "version")
+implementation(group = "ru.tinkoff.top", name = "camunda-delegator-spring-boot-starter", version = "version")
 ```
 
 Activate library by camunda plugin `BpmnParserCamundaPlugin` with other plugins
