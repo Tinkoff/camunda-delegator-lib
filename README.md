@@ -2,6 +2,10 @@
 
 This project provides declarative camunda delegates for Spring based application
 
+## Features
+* Declarative style for delegate code
+* Generated delegates documentation and templates for camunda modeler(this feature is not production ready)
+
 ## Requirements
 
 1. Project complied with Camunda version 7.13.
