@@ -1,7 +1,5 @@
 # camunda-delegator-lib
 
-This project provides declarative camunda delegates for Spring based application
-
 ## Features
 * Declarative style for delegate code
 * Generated delegates documentation and templates for camunda modeler(this feature is not production ready)
@@ -88,6 +86,8 @@ class ProductGeneratorDelegate {
     }
 }
 ```
+
+See [wiki](https://github.com/TinkoffCreditSystems/camunda-delegator-lib/wiki/How-to-write-delegates) for more information.
 
 ## Contacts
 p.pletnev@tinkoff.ru 
