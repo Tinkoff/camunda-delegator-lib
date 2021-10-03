@@ -3,6 +3,7 @@
 ## Features
 * Declarative style for delegate code
 * Generated delegates documentation and templates for camunda modeler(this feature is not production ready)
+* Compatibility with `JavaDelegate`
 
 ## Requirements
 
