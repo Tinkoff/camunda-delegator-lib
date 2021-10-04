@@ -16,10 +16,12 @@ open class DelegateMethodHandlerMockRegister(
     override fun initDelegates(delegates: List<Any>) {
         createDelegateExecutors(delegates).forEach { (_, versions) ->
             versions.forEach { (_, executor) ->
-                Mocks.register(
-                    executor.delegateInformation.metaInformation.delegateFullName,
-                    executor
-                )
+                val meta = executor.delegateInformation.metaInformation
+                Mocks.register(meta.delegateFullName, executor)
+
+                meta.delegateAliases.forEach {
+                    Mocks.register(it, executor)
+                }
             }
         }
     }

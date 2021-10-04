@@ -1,6 +1,7 @@
 package ru.tinkoff.top.camunda.delegator.test
 
 import ru.tinkoff.top.camunda.delegator.annotations.CamundaDelegate
+import ru.tinkoff.top.camunda.delegator.annotations.DelegateAliases
 import ru.tinkoff.top.camunda.delegator.annotations.DelegateExecute
 import ru.tinkoff.top.camunda.delegator.annotations.Variable
 import ru.tinkoff.top.camunda.delegator.delegates.executors.interceptors.output.single.SingleResultVariable
@@ -11,6 +12,7 @@ class DemoDelegate {
 
     @DelegateExecute
     @SingleResultVariable("result")
+    @DelegateAliases("demoDelegateAlias")
     fun generateProductPriority(
         @Variable("string") testString: String,
         @Variable("int") testInt: Int,
