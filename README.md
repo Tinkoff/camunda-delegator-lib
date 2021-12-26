@@ -7,7 +7,7 @@
 
 ## Requirements
 
-1. Project complied with Camunda version 7.13.
+1. Project complied with Camunda version 7.14.
 2. Spring Boot 2.5.2
 3. Kotlin version 1.5
 
@@ -18,14 +18,14 @@ Add dependency in gradle
 implementation(group = "ru.tinkoff.top", name = "camunda-delegator-spring-boot-starter", version = "version")
 ```
 
-Activate library by camunda plugin `BpmnParserCamundaPlugin` with other plugins
+Activate library by camunda plugin `DelegatorBpmnParserCamundaPlugin` with other plugins
 
 ```kotlin
     @Bean
     fun processEngineConfiguration(
         processEnginePlugins: List<ProcessEnginePlugin>
     ): SpringProcessEngineConfiguration {
-        val customEngine = SpringProcessEngineBpmnParseConfiguration()
+        val customEngine = SpringProcessEngineConfiguration()
         return CamundaSpringBootUtil.initCustomFields(customEngine).also {
             it.isJobExecutorActivate = false
             it.processEnginePlugins.add(CompositeProcessEnginePlugin(processEnginePlugins))
@@ -43,11 +43,11 @@ or
         @Qualifier(DELEGATOR_BPMN_PARSE_FACTORY)
         delegatorBpmnParseFactory: BpmnParseFactory
     ): SpringProcessEngineConfiguration {
-        val customEngine = SpringProcessEngineBpmnParseConfiguration()
+        val customEngine = SpringProcessEngineConfiguration()
         return CamundaSpringBootUtil.initCustomFields(customEngine).also {
             it.isJobExecutorActivate = false
             it.processEnginePlugins.add(
-                BpmnParserCamundaPlugin(delegatorExpressionManager, delegatorBpmnParseFactory)
+                DelegatorBpmnParserCamundaPlugin(delegatorExpressionManager, delegatorBpmnParseFactory)
             )
         }
     }

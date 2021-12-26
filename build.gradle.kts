@@ -222,14 +222,14 @@ subprojects {
 
         testImplementation("com.h2database:h2")
         testImplementation("org.assertj:assertj-core")
-        testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
+        testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
         testImplementation("org.camunda.bpm:camunda-engine:$camundaVersion")
         testImplementation("org.camunda.bpm:camunda-engine-spring:$camundaVersion")
         testImplementation("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-test:$camundaVersion")
-        testImplementation("org.camunda.bpm.assert:camunda-bpm-assert:8.0.0")
-        testImplementation("org.camunda.bpm.extension.mockito:camunda-bpm-mockito:5.14.0")
+        testImplementation("org.camunda.bpm.assert:camunda-bpm-assert:13.0.0")
+        testImplementation("org.camunda.bpm.extension.mockito:camunda-bpm-mockito:5.16.0")
         testImplementation("org.camunda.bpm.extension:camunda-bpm-process-test-coverage:0.4.0")
-        testImplementation("io.kotest:kotest-assertions-core:4.6.0")
+        testImplementation("io.kotest:kotest-assertions-core-jvm:5.0.3")
 
 
         testImplementation(group = "org.junit.jupiter", name = "junit-jupiter-api")

@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Import
 import org.springframework.core.annotation.Order
-import ru.tinkoff.top.camunda.delegator.config.BpmnParserCamundaPlugin
+import ru.tinkoff.top.camunda.delegator.config.DelegatorBpmnParserCamundaPlugin
 import ru.tinkoff.top.camunda.delegator.config.SpringProcessEngineBpmnParseConfiguration
 import ru.tinkoff.top.camunda.delegator.delegates.executors.DelegateExecutor
 import ru.tinkoff.top.camunda.delegator.delegates.executors.interceptors.DelegateInterceptor
@@ -66,13 +66,18 @@ class CamundaDelegatorAutoConfiguration {
     }
 
     @Bean
+    @ConditionalOnProperty(
+        value = ["delegator.plugins.bpmn-parser.enabled"],
+        havingValue = "true",
+        matchIfMissing = true
+    )
     fun bpmnParserCamundaPlugin(
         @Qualifier(DELEGATOR_EXPRESSION_MANAGER)
         delegatorExpressionManager: ExpressionManager,
         @Qualifier(DELEGATOR_BPMN_PARSE_FACTORY)
         delegatorBpmnParseFactory: BpmnParseFactory
-    ): BpmnParserCamundaPlugin {
-        return BpmnParserCamundaPlugin(delegatorExpressionManager, delegatorBpmnParseFactory)
+    ): DelegatorBpmnParserCamundaPlugin {
+        return DelegatorBpmnParserCamundaPlugin(delegatorExpressionManager, delegatorBpmnParseFactory)
     }
 
     @Bean
