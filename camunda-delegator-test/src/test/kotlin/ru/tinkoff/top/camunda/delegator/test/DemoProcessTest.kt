@@ -4,6 +4,7 @@ import org.camunda.bpm.engine.runtime.ProcessInstance
 import org.camunda.bpm.engine.test.Deployment
 import org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.assertThat
 import org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.runtimeService
+import org.camunda.bpm.extension.process_test_coverage.junit.rules.ProcessCoverageInMemProcessEngineConfiguration
 import org.camunda.bpm.extension.process_test_coverage.junit.rules.TestCoverageProcessEngineRule
 import org.camunda.bpm.extension.process_test_coverage.junit.rules.TestCoverageProcessEngineRuleBuilder
 import org.junit.Before
@@ -28,8 +29,8 @@ class DemoProcessTest {
             DelegateExecutorImpl()
         )
 
-        private val camundaConfiguration = TestCamundaConfiguration().also {
-            it.setBpmnParseFactory(DefaultDelegatorBpmnParseFactory())
+        private val camundaConfiguration = ProcessCoverageInMemProcessEngineConfiguration().also {
+            it.bpmnParseFactory = DefaultDelegatorBpmnParseFactory()
         }
 
         @Rule

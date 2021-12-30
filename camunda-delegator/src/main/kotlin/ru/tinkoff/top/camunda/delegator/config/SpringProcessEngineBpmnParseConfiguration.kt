@@ -1,6 +1,7 @@
 package ru.tinkoff.top.camunda.delegator.config
 
 import org.camunda.bpm.engine.impl.cfg.BpmnParseFactory
+import org.camunda.bpm.engine.impl.cfg.ProcessEngineConfigurationImpl
 import org.camunda.bpm.engine.spring.SpringProcessEngineConfiguration
 
 /**
@@ -10,13 +11,21 @@ import org.camunda.bpm.engine.spring.SpringProcessEngineConfiguration
  *
  * @author p.pletnev
  * */
+@Deprecated(
+    "Since version 7.14, assessors for bpmnParseFactory have been added to the ProcessEngineConfigurationImpl",
+    replaceWith = ReplaceWith(
+        expression = "SpringProcessEngineConfiguration",
+        imports = ["org.camunda.bpm.engine.spring.SpringProcessEngineConfiguration"]
+    )
+)
 open class SpringProcessEngineBpmnParseConfiguration : SpringProcessEngineConfiguration() {
 
-    fun getBpmnParseFactory(): BpmnParseFactory {
+    override fun getBpmnParseFactory(): BpmnParseFactory {
         return bpmnParseFactory
     }
 
-    fun setBpmnParseFactory(bpmnParseFactory: BpmnParseFactory) {
+    override fun setBpmnParseFactory(bpmnParseFactory: BpmnParseFactory): ProcessEngineConfigurationImpl {
         this.bpmnParseFactory = bpmnParseFactory
+        return this
     }
 }

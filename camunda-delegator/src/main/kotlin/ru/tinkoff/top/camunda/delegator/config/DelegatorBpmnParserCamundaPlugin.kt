@@ -10,30 +10,20 @@ import org.camunda.bpm.engine.impl.el.ExpressionManager
 /**
  * Registers delegatorBpmnParseFactory as BpmnParseFactor and delegatorExpressionManager.
  */
-@Deprecated(
-    "The class is left to support older versions of camunda. Will be removed in future releases",
-    replaceWith = ReplaceWith(
-        expression = "DelegatorBpmnParserCamundaPlugin",
-        imports = ["ru.tinkoff.top.camunda.delegator.config.DelegatorBpmnParserCamundaPlugin"]
-    )
-)
-class BpmnParserCamundaPlugin(
+class DelegatorBpmnParserCamundaPlugin(
     private val delegatorExpressionManager: ExpressionManager,
     private val delegatorBpmnParseFactory: BpmnParseFactory
 ) : ProcessEnginePlugin {
 
     companion object : KLogging()
 
-    override fun preInit(processEngineConfiguration: ProcessEngineConfigurationImpl?) {
+    override fun preInit(processEngineConfiguration: ProcessEngineConfigurationImpl) {
         logger.info { "Bpm parser camunda plugin is started" }
-        if (processEngineConfiguration !is SpringProcessEngineBpmnParseConfiguration) {
-            throw IllegalArgumentException(
-                "Process engine configuration not inherit " +
-                    "SpringProcessEngineBpmnParseConfiguration"
-            )
+
+        with(processEngineConfiguration) {
+            expressionManager = delegatorExpressionManager
+            bpmnParseFactory = delegatorBpmnParseFactory
         }
-        processEngineConfiguration.expressionManager = delegatorExpressionManager
-        processEngineConfiguration.setBpmnParseFactory(delegatorBpmnParseFactory)
     }
 
     override fun postProcessEngineBuild(processEngine: ProcessEngine?) = Unit
