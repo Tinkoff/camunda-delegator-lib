@@ -1,10 +1,9 @@
 pluginManagement {
     repositories {
-        //maven("https://plugins.gradle.org/m2/")
         gradlePluginPortal()
-        //maven("https://services.gradle.org/distributions/")
         mavenCentral()
     }
+    includeBuild("build-logic")
 }
 
 buildscript {
@@ -19,10 +18,12 @@ include(
     "camunda-delegator",
     "camunda-delegator-docs",
     "camunda-delegator-test",
-    "camunda-delegator-spring-boot",
-    "camunda-delegator-spring-boot-starter"
+    "spring:camunda-delegator-spring-boot",
+    "spring:camunda-delegator-spring-boot-starter"
 )
 
-project(":camunda-delegator-spring-boot").projectDir = file("spring/camunda-delegator-spring-boot")
-project(":camunda-delegator-spring-boot-starter").projectDir =
-    file("spring/camunda-delegator-spring-boot-starter")
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+    }
+}

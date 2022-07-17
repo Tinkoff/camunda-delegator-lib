@@ -1,8 +1,8 @@
 plugins {
-    kotlin("jvm")
+    id("tinkoff-library-conventions")
 }
 
 dependencies {
-    api(project(":camunda-delegator-spring-boot"))
+    api(project(":spring:camunda-delegator-spring-boot"))
     api(project(":camunda-delegator-test"))
 }
