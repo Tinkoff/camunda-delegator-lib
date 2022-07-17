@@ -1,7 +1,10 @@
 plugins {
-    id("kotlin")
+    id("tinkoff-library-conventions")
 }
 
 dependencies {
-    api(group = "org.springframework", name = "spring-context")
+    api(libs.camunda.engine)
+    api(libs.camunda.engine.spring)
+
+    api(libs.spring.context)
 }

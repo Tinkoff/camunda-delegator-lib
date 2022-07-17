@@ -1,9 +1,9 @@
 plugins {
-    id("kotlin")
+    id("tinkoff-library-conventions")
 }
 
 dependencies {
     api(project(":camunda-delegator"))
-    api(group = "org.springdoc", name = "springdoc-openapi-kotlin", version = "1.5.10")
-    api(group = "org.springframework.boot", name = "spring-boot-actuator")
+    api(libs.springdoc.kotlin)
+    api(libs.spring.boot.actuator)
 }

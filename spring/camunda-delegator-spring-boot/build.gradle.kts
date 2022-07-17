@@ -1,18 +1,20 @@
 plugins {
-    kotlin("jvm")
-    kotlin("kapt")
+    id("tinkoff-library-conventions")
 }
 
 dependencies {
     api(project(":camunda-delegator"))
     api(project(":camunda-delegator-docs"))
 
-    api("org.springframework.boot:spring-boot-starter")
-    api("org.springframework.boot:spring-boot-autoconfigure")
-    api("org.springframework.boot:spring-boot-actuator")
-    api("org.springframework.boot:spring-boot-actuator-autoconfigure")
+    api(libs.spring.boot.starter)
+    api(libs.spring.boot.autoconfigure)
+    api(libs.spring.boot.actuator)
+    api(libs.spring.boot.actuator.autoconfigure)
 
-    api("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter:${Versions.CAMUNDA}")
 
-    kapt("org.springframework.boot:spring-boot-autoconfigure-processor")
+    api(libs.camunda.spring.boot.starter)
+
+    kapt(libs.spring.boot.autoconfigure.processor)
+
+    testImplementation(libs.camunda.spring.boot.starter.test)
 }

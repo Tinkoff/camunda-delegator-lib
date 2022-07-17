@@ -49,9 +49,9 @@ class ResolveArgumentsInterceptorTest {
                     TestDelegateWithParams::testRequiredParam.javaMethod!!
                 ),
                 Arguments.of(
-                    ru.tinkoff.top.camunda.delegator.delegates.JavaDelegateWithParams(),
-                    ru.tinkoff.top.camunda.delegator.delegates.JavaDelegateWithParams::class.java,
-                    ru.tinkoff.top.camunda.delegator.delegates.JavaDelegateWithParams::requiredParams.javaMethod!!
+                    JavaDelegateWithParams(),
+                    JavaDelegateWithParams::class.java,
+                    JavaDelegateWithParams::requiredParams.javaMethod!!
                 )
             )
         }
