@@ -1,0 +1,490 @@
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/annotations/CamundaDelegate : java/lang/annotation/Annotation {
+	public abstract fun name ()Ljava/lang/String;
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/annotations/DelegateAliases : java/lang/annotation/Annotation {
+	public abstract fun values ()[Ljava/lang/String;
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/annotations/DelegateExecute : java/lang/annotation/Annotation {
+	public abstract fun version ()Ljava/lang/String;
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/annotations/Variable : java/lang/annotation/Annotation {
+	public abstract fun isLocal ()Z
+	public abstract fun isSystem ()Z
+	public abstract fun name ()Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/config/BpmnParserCamundaPlugin : org/camunda/bpm/engine/impl/cfg/ProcessEnginePlugin {
+	public static final field Companion Lru/tinkoff/top/camunda/delegator/config/BpmnParserCamundaPlugin$Companion;
+	public fun <init> (Lorg/camunda/bpm/engine/impl/el/ExpressionManager;Lorg/camunda/bpm/engine/impl/cfg/BpmnParseFactory;)V
+	public fun postInit (Lorg/camunda/bpm/engine/impl/cfg/ProcessEngineConfigurationImpl;)V
+	public fun postProcessEngineBuild (Lorg/camunda/bpm/engine/ProcessEngine;)V
+	public fun preInit (Lorg/camunda/bpm/engine/impl/cfg/ProcessEngineConfigurationImpl;)V
+}
+
+public final class ru/tinkoff/top/camunda/delegator/config/BpmnParserCamundaPlugin$Companion : mu/KLogging {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/config/DelegatorBpmnParserCamundaPlugin : org/camunda/bpm/engine/impl/cfg/ProcessEnginePlugin {
+	public static final field Companion Lru/tinkoff/top/camunda/delegator/config/DelegatorBpmnParserCamundaPlugin$Companion;
+	public fun <init> (Lorg/camunda/bpm/engine/impl/el/ExpressionManager;Lorg/camunda/bpm/engine/impl/cfg/BpmnParseFactory;)V
+	public fun postInit (Lorg/camunda/bpm/engine/impl/cfg/ProcessEngineConfigurationImpl;)V
+	public fun postProcessEngineBuild (Lorg/camunda/bpm/engine/ProcessEngine;)V
+	public fun preInit (Lorg/camunda/bpm/engine/impl/cfg/ProcessEngineConfigurationImpl;)V
+}
+
+public final class ru/tinkoff/top/camunda/delegator/config/DelegatorBpmnParserCamundaPlugin$Companion : mu/KLogging {
+}
+
+public class ru/tinkoff/top/camunda/delegator/config/SpringProcessEngineBpmnParseConfiguration : org/camunda/bpm/engine/spring/SpringProcessEngineConfiguration {
+	public fun <init> ()V
+	public fun getBpmnParseFactory ()Lorg/camunda/bpm/engine/impl/cfg/BpmnParseFactory;
+	public fun setBpmnParseFactory (Lorg/camunda/bpm/engine/impl/cfg/BpmnParseFactory;)Lorg/camunda/bpm/engine/impl/cfg/ProcessEngineConfigurationImpl;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/DelegateException : java/lang/RuntimeException {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)V
+	public final fun getDelegateActivityId ()Ljava/lang/String;
+	public final fun getDelegateActivityName ()Ljava/lang/String;
+	public final fun getDelegateName ()Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/DelegateInformation {
+	public fun <init> (Ljava/lang/Object;Lru/tinkoff/top/camunda/delegator/delegates/DelegateMetaInformation;)V
+	public final fun component1 ()Ljava/lang/Object;
+	public final fun component2 ()Lru/tinkoff/top/camunda/delegator/delegates/DelegateMetaInformation;
+	public final fun copy (Ljava/lang/Object;Lru/tinkoff/top/camunda/delegator/delegates/DelegateMetaInformation;)Lru/tinkoff/top/camunda/delegator/delegates/DelegateInformation;
+	public static synthetic fun copy$default (Lru/tinkoff/top/camunda/delegator/delegates/DelegateInformation;Ljava/lang/Object;Lru/tinkoff/top/camunda/delegator/delegates/DelegateMetaInformation;ILjava/lang/Object;)Lru/tinkoff/top/camunda/delegator/delegates/DelegateInformation;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDelegateBean ()Ljava/lang/Object;
+	public final fun getMetaInformation ()Lru/tinkoff/top/camunda/delegator/delegates/DelegateMetaInformation;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/DelegateMetaInformation {
+	public fun <init> (Ljava/lang/Class;Ljava/lang/reflect/Method;)V
+	public final fun component1 ()Ljava/lang/Class;
+	public final fun component2 ()Ljava/lang/reflect/Method;
+	public final fun copy (Ljava/lang/Class;Ljava/lang/reflect/Method;)Lru/tinkoff/top/camunda/delegator/delegates/DelegateMetaInformation;
+	public static synthetic fun copy$default (Lru/tinkoff/top/camunda/delegator/delegates/DelegateMetaInformation;Ljava/lang/Class;Ljava/lang/reflect/Method;ILjava/lang/Object;)Lru/tinkoff/top/camunda/delegator/delegates/DelegateMetaInformation;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDelegateAliases ()Ljava/util/Set;
+	public final fun getDelegateClass ()Ljava/lang/Class;
+	public final fun getDelegateFullName ()Ljava/lang/String;
+	public final fun getDelegateName ()Ljava/lang/String;
+	public final fun getDelegateVersion ()Ljava/lang/String;
+	public final fun getExecutionDelegateMethod ()Ljava/lang/reflect/Method;
+	public final fun getMethodParameters ()[Lorg/springframework/core/MethodParameter;
+	public final fun getReturnParameter ()Lorg/springframework/core/MethodParameter;
+	public final fun getReturnType ()Ljava/lang/Class;
+	public final fun getShortDescription ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/DelegateMetaInformationKt {
+	public static final field RETURN_VALUE_INDEX_PARAM I
+	public static final fun getDelegateAliases (Ljava/lang/reflect/Method;)Ljava/util/Set;
+	public static final fun getDelegateName (Ljava/lang/Class;)Ljava/lang/String;
+	public static final fun getDelegateVersion (Ljava/lang/reflect/Method;)Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/DelegateMethodHandlerElResolver : org/camunda/bpm/engine/impl/javax/el/ELResolver {
+	public fun <init> (Lru/tinkoff/top/camunda/delegator/delegates/register/DelegateExecutorsRegister;)V
+	public fun getCommonPropertyType (Lorg/camunda/bpm/engine/impl/javax/el/ELContext;Ljava/lang/Object;)Ljava/lang/Class;
+	public fun getFeatureDescriptors (Lorg/camunda/bpm/engine/impl/javax/el/ELContext;Ljava/lang/Object;)Ljava/util/Iterator;
+	public fun getType (Lorg/camunda/bpm/engine/impl/javax/el/ELContext;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Class;
+	public fun getValue (Lorg/camunda/bpm/engine/impl/javax/el/ELContext;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+	public fun isReadOnly (Lorg/camunda/bpm/engine/impl/javax/el/ELContext;Ljava/lang/Object;Ljava/lang/Object;)Z
+	public fun setValue (Lorg/camunda/bpm/engine/impl/javax/el/ELContext;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/JavaDelegateMethodHandlerInvocation : org/camunda/bpm/engine/impl/delegate/DelegateInvocation {
+	public fun <init> (Lru/tinkoff/top/camunda/delegator/servicetask/MethodHandlerDelegate;Lorg/camunda/bpm/engine/delegate/DelegateExecution;)V
+}
+
+public class ru/tinkoff/top/camunda/delegator/delegates/MethodHandlerDelegateImpl : ru/tinkoff/top/camunda/delegator/servicetask/MethodHandlerDelegate {
+	public static final field Companion Lru/tinkoff/top/camunda/delegator/delegates/MethodHandlerDelegateImpl$Companion;
+	public fun <init> (Lru/tinkoff/top/camunda/delegator/delegates/DelegateInformation;Lru/tinkoff/top/camunda/delegator/delegates/executors/DelegateExecutor;)V
+	public fun execute (Lorg/camunda/bpm/engine/delegate/DelegateExecution;)V
+	public fun getDelegateInformation ()Lru/tinkoff/top/camunda/delegator/delegates/DelegateInformation;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/MethodHandlerDelegateImpl$Companion : mu/KLogging {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/MethodHandlerDelegateImplKt {
+	public static final field DELEGATE_ACTIVITY_ID Ljava/lang/String;
+	public static final field DELEGATE_ACTIVITY_NAME Ljava/lang/String;
+	public static final field DELEGATE_NAME Ljava/lang/String;
+	public static final field DELEGATE_VERSION Ljava/lang/String;
+}
+
+public abstract interface class ru/tinkoff/top/camunda/delegator/delegates/executors/DelegateExecutor {
+	public abstract fun execute (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lru/tinkoff/top/camunda/delegator/delegates/DelegateInformation;[Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public class ru/tinkoff/top/camunda/delegator/delegates/executors/DelegateExecutorImpl : ru/tinkoff/top/camunda/delegator/delegates/executors/DelegateExecutor {
+	public fun <init> ()V
+	public fun execute (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lru/tinkoff/top/camunda/delegator/delegates/DelegateInformation;[Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public abstract class ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/DelegateInterceptor : ru/tinkoff/top/camunda/delegator/delegates/executors/DelegateExecutor {
+	public field nextExecutor Lru/tinkoff/top/camunda/delegator/delegates/executors/DelegateExecutor;
+	public fun <init> ()V
+	public final fun getNextExecutor ()Lru/tinkoff/top/camunda/delegator/delegates/executors/DelegateExecutor;
+	public final fun setNextExecutor (Lru/tinkoff/top/camunda/delegator/delegates/executors/DelegateExecutor;)V
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/ResolveArgumentsInterceptor : ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/DelegateInterceptor {
+	public static final field Companion Lru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/ResolveArgumentsInterceptor$Companion;
+	public fun <init> (Ljava/util/List;)V
+	public fun execute (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lru/tinkoff/top/camunda/delegator/delegates/DelegateInformation;[Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/ResolveArgumentsInterceptor$Companion : mu/KLogging {
+	public final fun getEMPTY_ARGS ()[Ljava/lang/Object;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/exception/DelegateExceptionProcessingInterceptor : ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/DelegateInterceptor {
+	public static final field Companion Lru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/exception/DelegateExceptionProcessingInterceptor$Companion;
+	public fun <init> ()V
+	public fun execute (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lru/tinkoff/top/camunda/delegator/delegates/DelegateInformation;[Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/exception/DelegateExceptionProcessingInterceptor$Companion : mu/KLogging {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/exception/ExceptionProcessingStrategy : java/lang/Enum {
+	public static final field FORWARD Lru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/exception/ExceptionProcessingStrategy;
+	public static final field LOG Lru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/exception/ExceptionProcessingStrategy;
+	public static fun valueOf (Ljava/lang/String;)Lru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/exception/ExceptionProcessingStrategy;
+	public static fun values ()[Lru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/exception/ExceptionProcessingStrategy;
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/exception/ExceptionStrategy : java/lang/annotation/Annotation {
+	public abstract fun exceptionProcessingStrategy ()Lru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/exception/ExceptionProcessingStrategy;
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/exception/ForwardException : java/lang/annotation/Annotation {
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/exception/LogException : java/lang/annotation/Annotation {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/output/multiple/MultipleResultExecutionWriter : ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/DelegateInterceptor {
+	public static final field Companion Lru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/output/multiple/MultipleResultExecutionWriter$Companion;
+	public fun <init> ()V
+	public fun execute (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lru/tinkoff/top/camunda/delegator/delegates/DelegateInformation;[Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/output/multiple/MultipleResultExecutionWriter$Companion : mu/KLogging {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/output/multiple/MultipleResultExecutionWriterKt {
+	public static final fun getParameterName (Lkotlin/reflect/KProperty1;Lru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/output/multiple/annotaions/ResultVariable;)Ljava/lang/String;
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/output/multiple/annotaions/MultipleResults : java/lang/annotation/Annotation {
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/output/multiple/annotaions/ResultVariable : java/lang/annotation/Annotation {
+	public abstract fun isLocal ()Z
+	public abstract fun name ()Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/output/single/SingleResultExecutionWriter : ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/DelegateInterceptor {
+	public static final field Companion Lru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/output/single/SingleResultExecutionWriter$Companion;
+	public fun <init> ()V
+	public fun execute (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lru/tinkoff/top/camunda/delegator/delegates/DelegateInformation;[Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/output/single/SingleResultExecutionWriter$Companion : mu/KLogging {
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/output/single/SingleResultVariable : java/lang/annotation/Annotation {
+	public abstract fun isLocal ()Z
+	public abstract fun name ()Ljava/lang/String;
+}
+
+public abstract interface class ru/tinkoff/top/camunda/delegator/delegates/factory/MethodHandlerDelegateFactory {
+	public abstract fun createMethodHandlerDelegate (Lru/tinkoff/top/camunda/delegator/delegates/DelegateInformation;Lru/tinkoff/top/camunda/delegator/delegates/executors/DelegateExecutor;)Lru/tinkoff/top/camunda/delegator/servicetask/MethodHandlerDelegate;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/factory/MethodHandlerDelegateFactoryImpl : ru/tinkoff/top/camunda/delegator/delegates/factory/MethodHandlerDelegateFactory {
+	public fun <init> ()V
+	public fun createMethodHandlerDelegate (Lru/tinkoff/top/camunda/delegator/delegates/DelegateInformation;Lru/tinkoff/top/camunda/delegator/delegates/executors/DelegateExecutor;)Lru/tinkoff/top/camunda/delegator/servicetask/MethodHandlerDelegate;
+}
+
+public abstract interface class ru/tinkoff/top/camunda/delegator/delegates/register/DelegateExecutorsRegister {
+	public abstract fun getDelegateMethodHandler (Ljava/lang/String;)Lru/tinkoff/top/camunda/delegator/servicetask/MethodHandlerDelegate;
+}
+
+public class ru/tinkoff/top/camunda/delegator/delegates/register/DelegateMethodHandlerRegister : ru/tinkoff/top/camunda/delegator/delegates/register/DelegateExecutorsRegister {
+	public static final field Companion Lru/tinkoff/top/camunda/delegator/delegates/register/DelegateMethodHandlerRegister$Companion;
+	public fun <init> (Ljava/util/List;Lru/tinkoff/top/camunda/delegator/delegates/executors/DelegateExecutor;Lru/tinkoff/top/camunda/delegator/delegates/factory/MethodHandlerDelegateFactory;)V
+	public synthetic fun <init> (Ljava/util/List;Lru/tinkoff/top/camunda/delegator/delegates/executors/DelegateExecutor;Lru/tinkoff/top/camunda/delegator/delegates/factory/MethodHandlerDelegateFactory;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	protected final fun createDelegateExecutors (Ljava/util/List;)Ljava/util/Map;
+	public fun getDelegateMethodHandler (Ljava/lang/String;)Lru/tinkoff/top/camunda/delegator/servicetask/MethodHandlerDelegate;
+	public fun initDelegates (Ljava/util/List;)V
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/register/DelegateMethodHandlerRegister$Companion : mu/KLogging {
+	public final fun getDELEGATE_EXECUTION_METHODS ()Lorg/springframework/util/ReflectionUtils$MethodFilter;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/ContextVariableResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/ContextVariableResolverKt {
+	public static final fun getParameterName (Lorg/springframework/core/MethodParameter;Lru/tinkoff/top/camunda/delegator/annotations/Variable;)Ljava/lang/String;
+	public static final fun getVariableAnnotation (Lorg/springframework/core/MethodParameter;)Lru/tinkoff/top/camunda/delegator/annotations/Variable;
+}
+
+public abstract interface class ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public abstract fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public abstract fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateExecutionAnn : java/lang/annotation/Annotation {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateExecutionResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/resolvers/activity/ActivityInstanceId : java/lang/annotation/Annotation {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/activity/ActivityInstanceIdResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public synthetic fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/String;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/resolvers/activity/CurrentActivityId : java/lang/annotation/Annotation {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/activity/CurrentActivityIdResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public synthetic fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/String;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/resolvers/activity/CurrentActivityName : java/lang/annotation/Annotation {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/activity/CurrentActivityNameResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public synthetic fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/String;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/resolvers/activity/ParentActivityInstanceId : java/lang/annotation/Annotation {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/activity/ParentActivityInstanceIdResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public synthetic fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/String;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/resolvers/base/EventName : java/lang/annotation/Annotation {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/base/EventNameResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public synthetic fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/String;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/resolvers/base/Id : java/lang/annotation/Annotation {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/base/IdResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public synthetic fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/String;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/resolvers/bpmn/BpmnModelInstanceAnnotation : java/lang/annotation/Annotation {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/bpmn/BpmnModelInstanceResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public synthetic fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Lorg/camunda/bpm/model/bpmn/BpmnModelInstance;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/resolvers/bpmn/FlowElementAnnotation : java/lang/annotation/Annotation {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/bpmn/FlowElementResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public synthetic fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Lorg/camunda/bpm/model/bpmn/instance/FlowElement;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/resolvers/businesskey/BusinessKey : java/lang/annotation/Annotation {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/businesskey/BusinessKeyResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public synthetic fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/String;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/resolvers/definition/ProcessDefinitionId : java/lang/annotation/Annotation {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/definition/ProcessDefinitionIdResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public synthetic fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/String;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/resolvers/execution/ParentId : java/lang/annotation/Annotation {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/execution/ParentIdResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public synthetic fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/String;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/resolvers/execution/SuperExecution : java/lang/annotation/Annotation {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/execution/SuperExecutionResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public synthetic fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Lorg/camunda/bpm/engine/delegate/DelegateExecution;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/resolvers/instacnce/ProcessInstance : java/lang/annotation/Annotation {
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/resolvers/instacnce/ProcessInstanceId : java/lang/annotation/Annotation {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/instacnce/ProcessInstanceIdResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public synthetic fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/String;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/instacnce/ProcessInstanceResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public synthetic fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Lorg/camunda/bpm/engine/delegate/DelegateExecution;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/resolvers/status/IsCanceled : java/lang/annotation/Annotation {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/status/IsCanceledResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Boolean;
+	public synthetic fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/resolvers/tenant/TenantId : java/lang/annotation/Annotation {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/tenant/TenantIdResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public synthetic fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/String;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/delegates/resolvers/transition/CurrentTransitionId : java/lang/annotation/Annotation {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/delegates/resolvers/transition/CurrentTransitionIdResolver : ru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver {
+	public fun <init> ()V
+	public synthetic fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/Object;
+	public fun resolveArgument (Lorg/camunda/bpm/engine/delegate/DelegateExecution;Lorg/springframework/core/MethodParameter;)Ljava/lang/String;
+	public fun supportsParameter (Lorg/springframework/core/MethodParameter;)Z
+}
+
+public final class ru/tinkoff/top/camunda/delegator/info/DelegatorProperties {
+	public fun <init> (Z)V
+	public final fun component1 ()Z
+	public final fun copy (Z)Lru/tinkoff/top/camunda/delegator/info/DelegatorProperties;
+	public static synthetic fun copy$default (Lru/tinkoff/top/camunda/delegator/info/DelegatorProperties;ZILjava/lang/Object;)Lru/tinkoff/top/camunda/delegator/info/DelegatorProperties;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEnabled ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/info/DelegatorPropertiesKt {
+	public static final field CAMUNDA_DELEGATOR Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/parser/DefaultDelegatorBpmnParseFactory : org/camunda/bpm/engine/impl/cfg/BpmnParseFactory {
+	public fun <init> ()V
+	public fun createBpmnParse (Lorg/camunda/bpm/engine/impl/bpmn/parser/BpmnParser;)Lorg/camunda/bpm/engine/impl/bpmn/parser/BpmnParse;
+}
+
+public class ru/tinkoff/top/camunda/delegator/parser/DelegatorCamundaBpmnParse : org/camunda/bpm/engine/impl/bpmn/parser/BpmnParse {
+	public fun <init> (Lorg/camunda/bpm/engine/impl/bpmn/parser/BpmnParser;)V
+	public fun parseExecutionListener (Lorg/camunda/bpm/engine/impl/util/xml/Element;Ljava/lang/String;)Lorg/camunda/bpm/engine/delegate/ExecutionListener;
+	public fun parseServiceTaskLike (Ljava/lang/String;Lorg/camunda/bpm/engine/impl/util/xml/Element;Lorg/camunda/bpm/engine/impl/pvm/process/ScopeImpl;)Lorg/camunda/bpm/engine/impl/pvm/process/ActivityImpl;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/servicetask/CustomClassDelegateActivityBehavior : org/camunda/bpm/engine/impl/bpmn/behavior/ClassDelegateActivityBehavior {
+	public fun <init> (Ljava/lang/String;Ljava/util/List;)V
+}
+
+public final class ru/tinkoff/top/camunda/delegator/servicetask/CustomDelegateExpressionExecutionListener : org/camunda/bpm/engine/impl/bpmn/listener/DelegateExpressionExecutionListener {
+	public fun <init> (Lorg/camunda/bpm/engine/delegate/Expression;Ljava/util/List;)V
+	public synthetic fun notify (Lorg/camunda/bpm/engine/delegate/BaseDelegateExecution;)V
+	public fun notify (Lorg/camunda/bpm/engine/delegate/DelegateExecution;)V
+}
+
+public final class ru/tinkoff/top/camunda/delegator/servicetask/CustomServiceTaskDelegateExpressionActivityBehavior : org/camunda/bpm/engine/impl/bpmn/behavior/ServiceTaskDelegateExpressionActivityBehavior {
+	public fun <init> (Lorg/camunda/bpm/engine/delegate/Expression;Ljava/util/List;)V
+	public fun performExecution (Lorg/camunda/bpm/engine/impl/pvm/delegate/ActivityExecution;)V
+}
+
+public final class ru/tinkoff/top/camunda/delegator/servicetask/DefaultDelegatorExpressionManager : org/camunda/bpm/engine/impl/el/ExpressionManager {
+	public fun <init> (Lorg/springframework/context/ApplicationContext;Lru/tinkoff/top/camunda/delegator/delegates/register/DelegateExecutorsRegister;)V
+	public synthetic fun createElResolver ()Lorg/camunda/bpm/engine/impl/javax/el/ELResolver;
+}
+
+public abstract interface class ru/tinkoff/top/camunda/delegator/servicetask/MethodHandlerDelegate {
+	public abstract fun execute (Lorg/camunda/bpm/engine/delegate/DelegateExecution;)V
+	public abstract fun getDelegateInformation ()Lru/tinkoff/top/camunda/delegator/delegates/DelegateInformation;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/servicetask/ServiceTaskJavaDelegateMethodHandlerActivityBehavior : org/camunda/bpm/engine/impl/bpmn/behavior/TaskActivityBehavior, org/camunda/bpm/engine/delegate/ExecutionListener, org/camunda/bpm/engine/impl/pvm/delegate/ActivityBehavior {
+	public fun <init> (Lru/tinkoff/top/camunda/delegator/servicetask/MethodHandlerDelegate;)V
+	public synthetic fun notify (Lorg/camunda/bpm/engine/delegate/BaseDelegateExecution;)V
+	public fun notify (Lorg/camunda/bpm/engine/delegate/DelegateExecution;)V
+}
+

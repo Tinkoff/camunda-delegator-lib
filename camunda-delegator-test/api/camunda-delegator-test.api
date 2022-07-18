@@ -1,0 +1,6 @@
+public class ru/tinkoff/top/camunda/delegator/test/DelegateMethodHandlerMockRegister : ru/tinkoff/top/camunda/delegator/delegates/register/DelegateMethodHandlerRegister {
+	public fun <init> (Ljava/util/List;Lru/tinkoff/top/camunda/delegator/delegates/executors/DelegateExecutor;)V
+	public fun getDelegateMethodHandler (Ljava/lang/String;)Lru/tinkoff/top/camunda/delegator/servicetask/MethodHandlerDelegate;
+	public fun initDelegates (Ljava/util/List;)V
+}
+
