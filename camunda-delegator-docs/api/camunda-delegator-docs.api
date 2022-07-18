@@ -1,0 +1,318 @@
+public final class ru/tinkoff/top/camunda/delegator/docs/DelegateDocProperties {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lru/tinkoff/top/camunda/delegator/docs/DelegateDocProperties;
+	public static synthetic fun copy$default (Lru/tinkoff/top/camunda/delegator/docs/DelegateDocProperties;Ljava/lang/String;ILjava/lang/Object;)Lru/tinkoff/top/camunda/delegator/docs/DelegateDocProperties;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDescriptionsFolder ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/DelegateDocService : org/springframework/context/ApplicationListener {
+	public static final field Companion Lru/tinkoff/top/camunda/delegator/docs/DelegateDocService$Companion;
+	public fun <init> (Lru/tinkoff/top/camunda/delegator/docs/DelegateDocProperties;Ljava/util/List;Ljava/util/List;)V
+	public final fun getDelegatesDoc ()Lru/tinkoff/top/camunda/delegator/docs/model/DelegatesDoc;
+	public fun onApplicationEvent (Lorg/springframework/boot/context/event/ApplicationStartedEvent;)V
+	public synthetic fun onApplicationEvent (Lorg/springframework/context/ApplicationEvent;)V
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/DelegateDocService$Companion : mu/KLogging {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/DelegateDocServiceKt {
+	public static final fun getDelegateTitle (Lru/tinkoff/top/camunda/delegator/delegates/DelegateMetaInformation;)Ljava/lang/String;
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/docs/annotations/DelegateInfo : java/lang/annotation/Annotation {
+	public abstract fun title ()Ljava/lang/String;
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/docs/annotations/VariableInfo : java/lang/annotation/Annotation {
+	public abstract fun description ()Ljava/lang/String;
+	public abstract fun example ()Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/controller/DelegatorDocsEndpoint {
+	public fun <init> (Lru/tinkoff/top/camunda/delegator/docs/DelegateDocService;)V
+	public final fun delegatesDoc ()Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/controller/DelegatorTemplatesEndpoint {
+	public fun <init> (Ljava/util/List;)V
+	public final fun delegatesTemplates ()Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/controller/EndpointUtilsKt {
+	public static final fun getObjectWriter ()Lcom/fasterxml/jackson/databind/ObjectWriter;
+}
+
+public abstract interface class ru/tinkoff/top/camunda/delegator/docs/descriptors/DelegateInputDescriptor {
+	public abstract fun describeInputVariable (Lio/swagger/v3/oas/models/Components;Lorg/springframework/core/MethodParameter;)Lru/tinkoff/top/camunda/delegator/docs/model/InputVariableInfo;
+}
+
+public abstract interface class ru/tinkoff/top/camunda/delegator/docs/descriptors/DelegateOutputDescriptor {
+	public abstract fun describeResultValues (Lio/swagger/v3/oas/models/Components;Lru/tinkoff/top/camunda/delegator/delegates/DelegateMetaInformation;)Ljava/util/List;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/descriptors/DescriptorExtKt {
+	public static final fun getVariableDescription (Ljava/lang/reflect/AnnotatedElement;)Ljava/lang/String;
+	public static final fun getVariableDescription (Lkotlin/reflect/KProperty;)Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/descriptors/SchemaDescriptorFuncKt {
+	public static final fun getSchema (Lio/swagger/v3/oas/models/Components;Lkotlin/reflect/KProperty;)Lio/swagger/v3/oas/models/media/Schema;
+	public static final fun getSchema (Lio/swagger/v3/oas/models/Components;Lorg/springframework/core/MethodParameter;)Lio/swagger/v3/oas/models/media/Schema;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/descriptors/input/CamundaContextVariableDescriptor : ru/tinkoff/top/camunda/delegator/docs/descriptors/DelegateInputDescriptor {
+	public fun <init> ()V
+	public fun describeInputVariable (Lio/swagger/v3/oas/models/Components;Lorg/springframework/core/MethodParameter;)Lru/tinkoff/top/camunda/delegator/docs/model/InputVariableInfo;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/descriptors/input/DelegateExecutionDescriptor : ru/tinkoff/top/camunda/delegator/docs/descriptors/DelegateInputDescriptor {
+	public fun <init> ()V
+	public fun describeInputVariable (Lio/swagger/v3/oas/models/Components;Lorg/springframework/core/MethodParameter;)Lru/tinkoff/top/camunda/delegator/docs/model/InputVariableInfo;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/descriptors/output/MultipleResultOutputDescriptor : ru/tinkoff/top/camunda/delegator/docs/descriptors/DelegateOutputDescriptor {
+	public fun <init> ()V
+	public fun describeResultValues (Lio/swagger/v3/oas/models/Components;Lru/tinkoff/top/camunda/delegator/delegates/DelegateMetaInformation;)Ljava/util/List;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/descriptors/output/SingleResultOutputDescriptor : ru/tinkoff/top/camunda/delegator/docs/descriptors/DelegateOutputDescriptor {
+	public fun <init> ()V
+	public fun describeResultValues (Lio/swagger/v3/oas/models/Components;Lru/tinkoff/top/camunda/delegator/delegates/DelegateMetaInformation;)Ljava/util/List;
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/docs/model/CamundaDelegateHelper : java/lang/annotation/Annotation {
+	public abstract fun title ()Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/model/DelegateComponents {
+	public fun <init> (Ljava/util/Map;)V
+	public final fun getSchemas ()Ljava/util/Map;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/model/DelegateHelperInfo {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+	public final fun getDescription ()Ljava/lang/String;
+	public final fun getHelperMethodsInfo ()Ljava/util/List;
+	public final fun getHelperName ()Ljava/lang/String;
+	public final fun getTitle ()Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/model/DelegateInfo {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Set;Ljava/lang/String;Ljava/lang/String;ZLio/swagger/v3/oas/models/media/Schema;Ljava/util/List;Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Set;Ljava/lang/String;Ljava/lang/String;ZLio/swagger/v3/oas/models/media/Schema;Ljava/util/List;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getDelegateAliases ()Ljava/util/Set;
+	public final fun getDelegateFullName ()Ljava/lang/String;
+	public final fun getDelegateName ()Ljava/lang/String;
+	public final fun getDelegateVersion ()Ljava/lang/String;
+	public final fun getDescription ()Ljava/lang/String;
+	public final fun getInputVariables ()Ljava/util/List;
+	public final fun getOutputVariables ()Ljava/util/List;
+	public final fun getRawReturnValue ()Lio/swagger/v3/oas/models/media/Schema;
+	public final fun getTitle ()Ljava/lang/String;
+	public final fun isAffectsProcessExecution ()Z
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/model/DelegatesDoc {
+	public fun <init> (Ljava/util/List;Lru/tinkoff/top/camunda/delegator/docs/model/DelegateComponents;)V
+	public final fun getComponents ()Lru/tinkoff/top/camunda/delegator/docs/model/DelegateComponents;
+	public final fun getDelegatesInfo ()Ljava/util/List;
+}
+
+public abstract interface annotation class ru/tinkoff/top/camunda/delegator/docs/model/HelperMethod : java/lang/annotation/Annotation {
+	public abstract fun title ()Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/model/HelperMethodInfo {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;)V
+	public final fun getDescription ()Ljava/lang/String;
+	public final fun getInputVariables ()Ljava/util/List;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getOutputVariables ()Ljava/util/List;
+	public final fun getTitle ()Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/model/InputVariableInfo : ru/tinkoff/top/camunda/delegator/docs/model/VariableInfo {
+	public fun <init> (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lio/swagger/v3/oas/models/media/Schema;Ljava/lang/String;Ljava/lang/String;Z)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lio/swagger/v3/oas/models/media/Schema;Ljava/lang/String;Ljava/lang/String;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun isSystem ()Z
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/model/OutputVariableInfo : ru/tinkoff/top/camunda/delegator/docs/model/VariableInfo {
+	public fun <init> (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Lio/swagger/v3/oas/models/media/Schema;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Lio/swagger/v3/oas/models/media/Schema;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public class ru/tinkoff/top/camunda/delegator/docs/model/VariableInfo {
+	public fun <init> (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Lio/swagger/v3/oas/models/media/Schema;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Lio/swagger/v3/oas/models/media/Schema;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getDescription ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getSchema ()Lio/swagger/v3/oas/models/media/Schema;
+	public final fun getSimpleClassName ()Ljava/lang/String;
+	public final fun isLocal ()Ljava/lang/Boolean;
+	public final fun isRequired ()Ljava/lang/Boolean;
+}
+
+public abstract class ru/tinkoff/top/camunda/delegator/docs/templates/Binding : java/io/Serializable {
+	public fun <init> ()V
+	public abstract fun getType ()Ljava/lang/String;
+}
+
+public abstract interface class ru/tinkoff/top/camunda/delegator/docs/templates/CamundaTemplateLoader {
+	public abstract fun load ()Ljava/util/List;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/templates/Choice {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun getName ()Ljava/lang/String;
+	public final fun getValue ()Ljava/lang/String;
+	public final fun setName (Ljava/lang/String;)V
+	public final fun setValue (Ljava/lang/String;)V
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/templates/ConstraintPattern {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun getMessage ()Ljava/lang/String;
+	public final fun getValue ()Ljava/lang/String;
+	public final fun setMessage (Ljava/lang/String;)V
+	public final fun setValue (Ljava/lang/String;)V
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/templates/Constraints : java/io/Serializable {
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Lru/tinkoff/top/camunda/delegator/docs/templates/ConstraintPattern;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Lru/tinkoff/top/camunda/delegator/docs/templates/ConstraintPattern;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getMaxLength ()Ljava/lang/String;
+	public final fun getMinLength ()Ljava/lang/String;
+	public final fun getNotEmpty ()Ljava/lang/Boolean;
+	public final fun getPattern ()Lru/tinkoff/top/camunda/delegator/docs/templates/ConstraintPattern;
+	public final fun setMaxLength (Ljava/lang/String;)V
+	public final fun setMinLength (Ljava/lang/String;)V
+	public final fun setNotEmpty (Ljava/lang/Boolean;)V
+	public final fun setPattern (Lru/tinkoff/top/camunda/delegator/docs/templates/ConstraintPattern;)V
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/templates/DelegateTemplate : java/io/Serializable {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lru/tinkoff/top/camunda/delegator/docs/templates/EntriesVisible;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lru/tinkoff/top/camunda/delegator/docs/templates/EntriesVisible;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getAppliesTo ()Ljava/util/List;
+	public final fun getEntriesVisible ()Lru/tinkoff/top/camunda/delegator/docs/templates/EntriesVisible;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getProperties ()Ljava/util/List;
+	public final fun getSchema ()Ljava/lang/String;
+	public final fun getVersion ()Ljava/lang/Integer;
+	public final fun isDefault ()Ljava/lang/Boolean;
+	public final fun setAppliesTo (Ljava/util/List;)V
+	public final fun setDefault (Ljava/lang/Boolean;)V
+	public final fun setEntriesVisible (Lru/tinkoff/top/camunda/delegator/docs/templates/EntriesVisible;)V
+	public final fun setId (Ljava/lang/String;)V
+	public final fun setName (Ljava/lang/String;)V
+	public final fun setProperties (Ljava/util/List;)V
+	public final fun setSchema (Ljava/lang/String;)V
+	public final fun setVersion (Ljava/lang/Integer;)V
+}
+
+public abstract interface class ru/tinkoff/top/camunda/delegator/docs/templates/DelegateTemplateCustomizer {
+	public abstract fun customize (Lru/tinkoff/top/camunda/delegator/docs/templates/DelegateTemplate;Lru/tinkoff/top/camunda/delegator/delegates/DelegateMetaInformation;)Lru/tinkoff/top/camunda/delegator/docs/templates/DelegateTemplate;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/templates/DelegatorTemplateService : org/springframework/context/ApplicationListener, ru/tinkoff/top/camunda/delegator/docs/templates/CamundaTemplateLoader {
+	public static final field Companion Lru/tinkoff/top/camunda/delegator/docs/templates/DelegatorTemplateService$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun initTemplates (Ljava/util/List;)V
+	public fun load ()Ljava/util/List;
+	public fun onApplicationEvent (Lorg/springframework/boot/context/event/ApplicationStartedEvent;)V
+	public synthetic fun onApplicationEvent (Lorg/springframework/context/ApplicationEvent;)V
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/templates/DelegatorTemplateService$Companion : mu/KLogging {
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/templates/DelegatorTemplateServiceKt {
+	public static final field DELEGATE_EXPRESSION_PROPERTY_NAME Ljava/lang/String;
+	public static final field GENERATED_PREFIX Ljava/lang/String;
+	public static final field SERVICE_TASK_NAME Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/templates/EntriesVisible : java/io/Serializable {
+	public fun <init> ()V
+	public fun <init> (Z)V
+	public synthetic fun <init> (ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getAll ()Z
+	public final fun setAll (Z)V
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/templates/InputParameterBinding : ru/tinkoff/top/camunda/delegator/docs/templates/Binding {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lru/tinkoff/top/camunda/delegator/docs/templates/InputParameterBinding;
+	public static synthetic fun copy$default (Lru/tinkoff/top/camunda/delegator/docs/templates/InputParameterBinding;Ljava/lang/String;ILjava/lang/Object;)Lru/tinkoff/top/camunda/delegator/docs/templates/InputParameterBinding;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/templates/OutputParameterBinding : ru/tinkoff/top/camunda/delegator/docs/templates/Binding {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lru/tinkoff/top/camunda/delegator/docs/templates/OutputParameterBinding;
+	public static synthetic fun copy$default (Lru/tinkoff/top/camunda/delegator/docs/templates/OutputParameterBinding;Ljava/lang/String;ILjava/lang/Object;)Lru/tinkoff/top/camunda/delegator/docs/templates/OutputParameterBinding;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getSource ()Ljava/lang/String;
+	public fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/templates/Property : java/io/Serializable {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Lru/tinkoff/top/camunda/delegator/docs/templates/Binding;Lru/tinkoff/top/camunda/delegator/docs/templates/Constraints;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Lru/tinkoff/top/camunda/delegator/docs/templates/Binding;Lru/tinkoff/top/camunda/delegator/docs/templates/Constraints;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getBinding ()Lru/tinkoff/top/camunda/delegator/docs/templates/Binding;
+	public final fun getChoices ()Ljava/util/List;
+	public final fun getConstraints ()Lru/tinkoff/top/camunda/delegator/docs/templates/Constraints;
+	public final fun getDescription ()Ljava/lang/String;
+	public final fun getEditable ()Ljava/lang/Boolean;
+	public final fun getLabel ()Ljava/lang/String;
+	public final fun getType ()Ljava/lang/String;
+	public final fun getValue ()Ljava/lang/String;
+	public final fun setBinding (Lru/tinkoff/top/camunda/delegator/docs/templates/Binding;)V
+	public final fun setChoices (Ljava/util/List;)V
+	public final fun setConstraints (Lru/tinkoff/top/camunda/delegator/docs/templates/Constraints;)V
+	public final fun setDescription (Ljava/lang/String;)V
+	public final fun setEditable (Ljava/lang/Boolean;)V
+	public final fun setLabel (Ljava/lang/String;)V
+	public final fun setType (Ljava/lang/String;)V
+	public final fun setValue (Ljava/lang/String;)V
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/templates/PropertyBinding : ru/tinkoff/top/camunda/delegator/docs/templates/Binding {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lru/tinkoff/top/camunda/delegator/docs/templates/PropertyBinding;
+	public static synthetic fun copy$default (Lru/tinkoff/top/camunda/delegator/docs/templates/PropertyBinding;Ljava/lang/String;ILjava/lang/Object;)Lru/tinkoff/top/camunda/delegator/docs/templates/PropertyBinding;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/docs/templates/PropertyType : java/lang/Enum {
+	public static final field DROPDOWN Lru/tinkoff/top/camunda/delegator/docs/templates/PropertyType;
+	public static final field STRING Lru/tinkoff/top/camunda/delegator/docs/templates/PropertyType;
+	public final fun getType ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lru/tinkoff/top/camunda/delegator/docs/templates/PropertyType;
+	public static fun values ()[Lru/tinkoff/top/camunda/delegator/docs/templates/PropertyType;
+}
+

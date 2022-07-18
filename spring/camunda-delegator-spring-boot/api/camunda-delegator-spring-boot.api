@@ -1,0 +1,84 @@
+public class ru/tinkoff/top/camunda/delegator/springboot/CamundaDelegatorAutoConfiguration {
+	public fun <init> ()V
+	public fun bpmnParserCamundaPlugin (Lorg/camunda/bpm/engine/impl/el/ExpressionManager;Lorg/camunda/bpm/engine/impl/cfg/BpmnParseFactory;)Lru/tinkoff/top/camunda/delegator/config/DelegatorBpmnParserCamundaPlugin;
+	public fun delegatorBpmnParseFactory ()Lorg/camunda/bpm/engine/impl/cfg/BpmnParseFactory;
+	public fun delegatorDelegateRegister (Ljava/util/List;Lru/tinkoff/top/camunda/delegator/delegates/executors/DelegateExecutor;Lru/tinkoff/top/camunda/delegator/delegates/factory/MethodHandlerDelegateFactory;)Lru/tinkoff/top/camunda/delegator/delegates/register/DelegateExecutorsRegister;
+	public fun delegatorExpressionManager (Lorg/springframework/context/ApplicationContext;Lru/tinkoff/top/camunda/delegator/delegates/register/DelegateExecutorsRegister;)Lorg/camunda/bpm/engine/impl/el/ExpressionManager;
+	public fun delegatorInfoContributor ()Lorg/springframework/boot/actuate/info/SimpleInfoContributor;
+	public fun methodHandlerDelegateFactory ()Lru/tinkoff/top/camunda/delegator/delegates/factory/MethodHandlerDelegateFactory;
+	public fun processEngineConfigurationImpl (Ljava/util/List;)Lorg/camunda/bpm/engine/impl/cfg/ProcessEngineConfigurationImpl;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/springboot/CamundaDelegatorAutoConfigurationKt {
+	public static final field DELEGATOR_BPMN_PARSE_FACTORY Ljava/lang/String;
+	public static final field DELEGATOR_EXPRESSION_MANAGER Ljava/lang/String;
+}
+
+public class ru/tinkoff/top/camunda/delegator/springboot/DelegatorDocsAutoConfiguration {
+	public fun <init> ()V
+	public fun delegateDocService (Lru/tinkoff/top/camunda/delegator/docs/DelegateDocProperties;Ljava/util/List;Ljava/util/List;)Lru/tinkoff/top/camunda/delegator/docs/DelegateDocService;
+	public fun delegatorDocsEndpoint (Lru/tinkoff/top/camunda/delegator/docs/DelegateDocService;)Lru/tinkoff/top/camunda/delegator/docs/controller/DelegatorDocsEndpoint;
+	public fun delegatorTemplateService (Ljava/util/List;)Lru/tinkoff/top/camunda/delegator/docs/templates/DelegatorTemplateService;
+	public fun delegatorTemplatesEndpoint (Ljava/util/List;)Lru/tinkoff/top/camunda/delegator/docs/controller/DelegatorTemplatesEndpoint;
+}
+
+public class ru/tinkoff/top/camunda/delegator/springboot/configuration/CamundaDelegatesExecutorsConfiguration {
+	public fun <init> ()V
+	public fun delegateExceptionProcessingInterceptor ()Lru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/exception/DelegateExceptionProcessingInterceptor;
+	public fun mainDelegateExecutor ()Lru/tinkoff/top/camunda/delegator/delegates/executors/DelegateExecutor;
+	public fun multipleResultExecutionWriter ()Lru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/output/multiple/MultipleResultExecutionWriter;
+	public fun resolveArgumentsInterceptor (Ljava/util/List;)Lru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/ResolveArgumentsInterceptor;
+	public fun singleResultInterceptor ()Lru/tinkoff/top/camunda/delegator/delegates/executors/interceptors/output/single/SingleResultExecutionWriter;
+}
+
+public final class ru/tinkoff/top/camunda/delegator/springboot/configuration/CamundaDelegatesExecutorsConfigurationKt {
+	public static final field ARGUMENTS_RESOLVER_INTERCEPTOR_NUMBER I
+	public static final field EXCEPTION_INTERCEPTOR_NUMBER I
+	public static final field RESULT_PROCESSING_INTERCEPTOR_NUMBER I
+}
+
+public class ru/tinkoff/top/camunda/delegator/springboot/configuration/CamundaDelegatorDocsDescriptorConfiguration {
+	public fun <init> ()V
+	public fun camundaContextVariableDescriptor ()Lru/tinkoff/top/camunda/delegator/docs/descriptors/DelegateInputDescriptor;
+	public fun delegateExecutionDescriptor ()Lru/tinkoff/top/camunda/delegator/docs/descriptors/DelegateInputDescriptor;
+	public fun multipleResultOutputDescriptor ()Lru/tinkoff/top/camunda/delegator/docs/descriptors/DelegateOutputDescriptor;
+	public fun singleResultOutputDescriptor ()Lru/tinkoff/top/camunda/delegator/docs/descriptors/DelegateOutputDescriptor;
+}
+
+public class ru/tinkoff/top/camunda/delegator/springboot/configuration/CamundaDelegatorResolversConfiguration {
+	public fun <init> ()V
+	public fun contextVariableResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/ContextVariableResolver;
+	public fun delegateExecutionResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateExecutionResolver;
+}
+
+public class ru/tinkoff/top/camunda/delegator/springboot/configuration/CamundaDelegatorSubResolversConfiguration {
+	public fun <init> ()V
+	public fun activityInstanceIdResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver;
+	public fun bpmnModelInstanceResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver;
+	public fun businessKeyResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver;
+	public fun currentActivityIdResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver;
+	public fun currentActivityNameResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver;
+	public fun currentTransitionIdResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver;
+	public fun eventNameResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver;
+	public fun flowElementResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver;
+	public fun idResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver;
+	public fun isCanceledResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver;
+	public fun parentActivityInstanceIdResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver;
+	public fun parentIdResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver;
+	public fun processDefinitionIdResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver;
+	public fun processInstanceIdResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver;
+	public fun processInstanceResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver;
+	public fun superExecutionResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver;
+	public fun tenantIdResolver ()Lru/tinkoff/top/camunda/delegator/delegates/resolvers/DelegateArgumentResolver;
+}
+
+public class ru/tinkoff/top/camunda/delegator/springboot/listener/DelegateMethodHandlerEventRegister : ru/tinkoff/top/camunda/delegator/delegates/register/DelegateMethodHandlerRegister, org/springframework/context/ApplicationListener {
+	public fun <init> (Ljava/util/List;Lru/tinkoff/top/camunda/delegator/delegates/executors/DelegateExecutor;Lru/tinkoff/top/camunda/delegator/delegates/factory/MethodHandlerDelegateFactory;)V
+	public fun onApplicationEvent (Lorg/springframework/boot/context/event/ApplicationStartedEvent;)V
+	public synthetic fun onApplicationEvent (Lorg/springframework/context/ApplicationEvent;)V
+}
+
+public final class ru/tinkoff/top/camunda/delegator/springboot/listener/DelegateMethodHandlerEventRegisterKt {
+	public static final field DELEGATE_REGISTER_LISTENER_ORDER I
+}
+

@@ -4,6 +4,8 @@ plugins {
     id("com.github.jk1.dependency-license-report") version "1.17"
     id("org.jmailen.kotlinter") version libs.versions.kotlinter.get()
     id("org.jetbrains.dokka") version libs.versions.kotlin.get()
+
+    id("org.jetbrains.kotlinx.binary-compatibility-validator") version libs.versions.kotvalidator.get()
 }
 
 tasks {
