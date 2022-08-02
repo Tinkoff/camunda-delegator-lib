@@ -1,3 +1,4 @@
+import java.time.LocalDate
 import org.gradle.accessors.dm.LibrariesForLibs
 
 
@@ -44,11 +45,11 @@ artifacts {
 tasks {
     test {
         systemProperty(
-            "camunda-bpm-process-test-coverage.target-dir-root",
-            "build/process-test-coverage/"
+            "camunda-process-test-coverage.target-dir-root",
+            project.buildDir.resolve("process-test-coverage")
         )
         useJUnitPlatform {
-            includeEngines("junit-vintage", "junit-jupiter")
+            includeEngines("junit-jupiter")
         }
     }
 
@@ -61,16 +62,22 @@ tasks {
         )
     }
     compileKotlin {
-        kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+        kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
         kotlinOptions.freeCompilerArgs = listOf("-Xjsr305=strict")
     }
     compileTestKotlin {
-        kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+        kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     configure<JavaPluginExtension> {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    withType<AbstractPublishToMaven> {
+        doFirst {
+            logger.warn("Publish library with version ${project.version}")
+        }
     }
 }
 
@@ -123,8 +130,8 @@ publishing {
     }
     repositories {
         maven {
-            name = "OSSRH"
-            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+            name = System.getenv("SONATYPE_NAME") ?: "OSSRH"
+            url = uri(System.getenv("SONATYPE_URI") ?: "https://oss.sonatype.org/service/local/staging/deploy/maven2/")
             credentials {
                 username = System.getenv("MAVEN_USERNAME")
                 password = System.getenv("MAVEN_PASSWORD")
@@ -148,10 +155,9 @@ signing {
 
 // control version of Kotlin
 ext["kotlin.version"] = libs.versions.kotlin.get()
+ext["kotlin-coroutines.version"] = libs.versions.kotcoroutines.get()
 
 dependencies {
-    // kotlin
-    api(libs.kotlin.stdlib)
     api(libs.kotlin.reflect)
     api(libs.kotlin.logging)
 
@@ -164,17 +170,16 @@ dependencies {
     testImplementation(libs.mockito.kotlin)
     testImplementation(libs.kotest.assertions.core.jvm)
     testImplementation(libs.camunda.bpm.assert)
-    testImplementation(libs.camunda.bpm.mockito)
     testImplementation(libs.camunda.bpm.process.test.coverage)
+    testImplementation(libs.camunda.bpm.junit5)
 
     testImplementation(libs.junit.jupiter.api)
-    testImplementation(libs.junit.jupiter.params)
-    testImplementation(libs.junit.vintage.engine)
+    testImplementation(libs.junit.engine)
 }
 
 fun resolveVersion(): String {
     return System.getenv("RELEASE_VERSION") ?: when (val githubRunNumber = System.getenv("GITHUB_RUN_NUMBER")) {
-        null -> "LOCAL"
-        else -> "GITHUB.${githubRunNumber}-SNAPSHOT"
+        null -> "LOCAL-${LocalDate.now()}"
+        else -> "GITHUB-${githubRunNumber}-SNAPSHOT"
     }
 }

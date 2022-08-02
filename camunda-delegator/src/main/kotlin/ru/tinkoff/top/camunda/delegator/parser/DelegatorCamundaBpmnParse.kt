@@ -16,26 +16,24 @@ import ru.tinkoff.top.camunda.delegator.servicetask.CustomServiceTaskDelegateExp
  *
  * @author p.pletnev
  */
-@Suppress("LongMethod", "ComplexMethod", "NestedBlockDepth", "MaximumLineLength", "MaxLineLength")
 open class DelegatorCamundaBpmnParse(
     parser: BpmnParser
 ) : BpmnParse(parser) {
 
     override fun parseServiceTaskLike(
+        activity: ActivityImpl,
         elementName: String,
         serviceTaskElement: Element,
+        camundaPropertiesElement: Element,
         scope: ScopeImpl
-    ): ActivityImpl {
+    ) {
         val delegateExpression = serviceTaskElement.attributeNS(
             CAMUNDA_BPMN_EXTENSIONS_NS,
             PROPERTYNAME_DELEGATE_EXPRESSION
         )
 
         if (delegateExpression != null) {
-            val activity = createActivityOnScope(serviceTaskElement, scope)
             val resultVariableName = parseResultVariable(serviceTaskElement)
-
-            parseAsynchronousContinuationForActivity(serviceTaskElement, activity)
 
             if (resultVariableName != null) {
                 addError(
@@ -47,24 +45,14 @@ open class DelegatorCamundaBpmnParse(
                 expressionManager.createExpression(delegateExpression),
                 parseFieldDeclarations(serviceTaskElement)
             )
-
-            parseExecutionListenersOnScope(serviceTaskElement, activity)
-
-            for (parseListener in parseListeners) {
-                parseListener.parseServiceTask(serviceTaskElement, scope, activity)
-            }
-
-            // activity behavior could be set by a listener (e.g. connector); thus,
-            // check is after listener invocation
-            if (activity.activityBehavior == null) {
-                val msg = "One of the attributes 'class', " +
-                    "'delegateExpression', 'type', or 'expression' is mandatory on $elementName."
-                addError(msg, serviceTaskElement)
-            }
-
-            return activity
         } else {
-            return super.parseServiceTaskLike(elementName, serviceTaskElement, scope)
+            super.parseServiceTaskLike(
+                activity,
+                elementName,
+                serviceTaskElement,
+                camundaPropertiesElement,
+                scope
+            )
         }
     }
 

@@ -8,7 +8,8 @@ import ru.tinkoff.top.camunda.delegator.delegates.executors.DelegateExecutorImpl
 class DelegateMethodHandlerMockRegisterTest {
 
     private val register = DelegateMethodHandlerMockRegister(
-        listOf(), DelegateExecutorImpl()
+        listOf(),
+        DelegateExecutorImpl()
     )
 
     @Test

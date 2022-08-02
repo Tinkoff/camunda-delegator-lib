@@ -25,7 +25,6 @@ import java.lang.reflect.Method
 import java.util.stream.Stream
 import kotlin.reflect.jvm.javaMethod
 
-@Suppress("UnusedPrivateMember")
 class ResolveArgumentsInterceptorTest {
 
     companion object {
@@ -115,7 +114,8 @@ class ResolveArgumentsInterceptorTest {
         whenever(argumentResolver.resolveArgument(any(), any())).thenReturn(null)
 
         val delegateInformation = DelegateInformation(
-            delegate, DelegateMetaInformation(delegateClass, executionDelegateMethod)
+            delegate,
+            DelegateMetaInformation(delegateClass, executionDelegateMethod)
         )
 
         val interceptor = ResolveArgumentsInterceptor(emptyList()).also {
@@ -140,7 +140,8 @@ class ResolveArgumentsInterceptorTest {
         whenever(argumentResolver.resolveArgument(any(), any())).thenReturn(null)
 
         val delegateInformation = DelegateInformation(
-            delegate, DelegateMetaInformation(delegateClass, executionDelegateMethod)
+            delegate,
+            DelegateMetaInformation(delegateClass, executionDelegateMethod)
         )
 
         val interceptor = ResolveArgumentsInterceptor(emptyList()).also {

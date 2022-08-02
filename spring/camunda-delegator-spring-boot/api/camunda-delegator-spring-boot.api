@@ -6,7 +6,6 @@ public class ru/tinkoff/top/camunda/delegator/springboot/CamundaDelegatorAutoCon
 	public fun delegatorExpressionManager (Lorg/springframework/context/ApplicationContext;Lru/tinkoff/top/camunda/delegator/delegates/register/DelegateExecutorsRegister;)Lorg/camunda/bpm/engine/impl/el/ExpressionManager;
 	public fun delegatorInfoContributor ()Lorg/springframework/boot/actuate/info/SimpleInfoContributor;
 	public fun methodHandlerDelegateFactory ()Lru/tinkoff/top/camunda/delegator/delegates/factory/MethodHandlerDelegateFactory;
-	public fun processEngineConfigurationImpl (Ljava/util/List;)Lorg/camunda/bpm/engine/impl/cfg/ProcessEngineConfigurationImpl;
 }
 
 public final class ru/tinkoff/top/camunda/delegator/springboot/CamundaDelegatorAutoConfigurationKt {

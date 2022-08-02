@@ -13,12 +13,10 @@ import ru.tinkoff.top.camunda.delegator.delegates.DelegateInformation
 import ru.tinkoff.top.camunda.delegator.delegates.DelegateMetaInformation
 import kotlin.reflect.jvm.javaMethod
 
-@Suppress("UnusedPrivateMember")
 class DelegateExecutorImplTest {
 
     @Test
     fun `when method arguments not present then error`() {
-
         @CamundaDelegate
         class TestDelegate {
             @DelegateExecute
@@ -41,7 +39,6 @@ class DelegateExecutorImplTest {
 
     @Test
     fun `when method arguments present then delegate method call`() {
-
         @CamundaDelegate
         class TestDelegate {
             @DelegateExecute

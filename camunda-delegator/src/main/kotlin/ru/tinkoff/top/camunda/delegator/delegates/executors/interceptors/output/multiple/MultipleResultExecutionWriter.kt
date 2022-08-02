@@ -40,7 +40,6 @@ class MultipleResultExecutionWriter : DelegateInterceptor() {
         }
     }
 
-    @Suppress("ReturnCount")
     private fun delegateSupportedMultipleResult(
         delegateMethod: Method
     ): Boolean {
