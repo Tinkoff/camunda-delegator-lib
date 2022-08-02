@@ -3,14 +3,11 @@ package ru.tinkoff.top.camunda.delegator.test
 import org.camunda.bpm.engine.runtime.ProcessInstance
 import org.camunda.bpm.engine.test.Deployment
 import org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.assertThat
-import org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.runtimeService
-import org.camunda.bpm.extension.process_test_coverage.junit.rules.ProcessCoverageInMemProcessEngineConfiguration
-import org.camunda.bpm.extension.process_test_coverage.junit.rules.TestCoverageProcessEngineRule
-import org.camunda.bpm.extension.process_test_coverage.junit.rules.TestCoverageProcessEngineRuleBuilder
-import org.junit.Before
-import org.junit.ClassRule
-import org.junit.Rule
-import org.junit.Test
+import org.camunda.community.process_test_coverage.engine.platform7.ProcessCoverageInMemProcessEngineConfiguration
+import org.camunda.community.process_test_coverage.junit5.platform7.ProcessEngineCoverageExtension
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.RegisterExtension
 import ru.tinkoff.top.camunda.delegator.delegates.executors.DelegateExecutorImpl
 import ru.tinkoff.top.camunda.delegator.delegates.executors.interceptors.ResolveArgumentsInterceptor
 import ru.tinkoff.top.camunda.delegator.delegates.executors.interceptors.output.single.SingleResultExecutionWriter
@@ -33,15 +30,15 @@ class DemoProcessTest {
             it.bpmnParseFactory = DefaultDelegatorBpmnParseFactory()
         }
 
-        @Rule
-        @ClassRule
         @JvmField
-        val processEngineRule: TestCoverageProcessEngineRule = TestCoverageProcessEngineRuleBuilder
-            .create(camundaConfiguration.buildProcessEngine())
+        @RegisterExtension
+        var coverageExtension: ProcessEngineCoverageExtension = ProcessEngineCoverageExtension
+            .builder(camundaConfiguration)
+            .assertClassCoverageAtLeast(0.5)
             .build()
     }
 
-    @Before
+    @BeforeEach
     fun init() {
         delegateMethodHandlerRegister.initDelegates(listOf(DemoDelegate()))
     }
@@ -60,7 +57,7 @@ class DemoProcessTest {
     private fun runProcess(
         processName: String,
         variables: Map<String, Any?> = emptyMap()
-    ): ProcessInstance = runtimeService().startProcessInstanceByKey(
+    ): ProcessInstance = coverageExtension.processEngine.runtimeService.startProcessInstanceByKey(
         processName,
         processName,
         variables

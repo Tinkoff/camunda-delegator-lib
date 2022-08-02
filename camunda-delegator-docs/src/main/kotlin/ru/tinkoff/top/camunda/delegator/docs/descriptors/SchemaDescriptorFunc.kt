@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:filename")
+
 package ru.tinkoff.top.camunda.delegator.docs.descriptors
 
 import io.swagger.v3.oas.models.Components
@@ -20,7 +22,8 @@ fun getSchema(components: Components, methodParameter: MethodParameter): Schema<
     }
     return SpringDocAnnotationsUtils.resolveSchemaFromType(
         methodParameter.parameterType,
-        components, null,
+        components,
+        null,
         methodParameter.parameterAnnotations
     )
 }
@@ -36,7 +39,8 @@ fun getSchema(components: Components, property: KProperty<*>): Schema<*> {
     }
     return SpringDocAnnotationsUtils.resolveSchemaFromType(
         property.returnType.jvmErasure.java,
-        components, null,
+        components,
+        null,
         property.annotations.toTypedArray()
     )
 }

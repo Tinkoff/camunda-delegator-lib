@@ -16,17 +16,6 @@ public abstract interface annotation class ru/tinkoff/top/camunda/delegator/anno
 	public abstract fun name ()Ljava/lang/String;
 }
 
-public final class ru/tinkoff/top/camunda/delegator/config/BpmnParserCamundaPlugin : org/camunda/bpm/engine/impl/cfg/ProcessEnginePlugin {
-	public static final field Companion Lru/tinkoff/top/camunda/delegator/config/BpmnParserCamundaPlugin$Companion;
-	public fun <init> (Lorg/camunda/bpm/engine/impl/el/ExpressionManager;Lorg/camunda/bpm/engine/impl/cfg/BpmnParseFactory;)V
-	public fun postInit (Lorg/camunda/bpm/engine/impl/cfg/ProcessEngineConfigurationImpl;)V
-	public fun postProcessEngineBuild (Lorg/camunda/bpm/engine/ProcessEngine;)V
-	public fun preInit (Lorg/camunda/bpm/engine/impl/cfg/ProcessEngineConfigurationImpl;)V
-}
-
-public final class ru/tinkoff/top/camunda/delegator/config/BpmnParserCamundaPlugin$Companion : mu/KLogging {
-}
-
 public final class ru/tinkoff/top/camunda/delegator/config/DelegatorBpmnParserCamundaPlugin : org/camunda/bpm/engine/impl/cfg/ProcessEnginePlugin {
 	public static final field Companion Lru/tinkoff/top/camunda/delegator/config/DelegatorBpmnParserCamundaPlugin$Companion;
 	public fun <init> (Lorg/camunda/bpm/engine/impl/el/ExpressionManager;Lorg/camunda/bpm/engine/impl/cfg/BpmnParseFactory;)V
@@ -36,12 +25,6 @@ public final class ru/tinkoff/top/camunda/delegator/config/DelegatorBpmnParserCa
 }
 
 public final class ru/tinkoff/top/camunda/delegator/config/DelegatorBpmnParserCamundaPlugin$Companion : mu/KLogging {
-}
-
-public class ru/tinkoff/top/camunda/delegator/config/SpringProcessEngineBpmnParseConfiguration : org/camunda/bpm/engine/spring/SpringProcessEngineConfiguration {
-	public fun <init> ()V
-	public fun getBpmnParseFactory ()Lorg/camunda/bpm/engine/impl/cfg/BpmnParseFactory;
-	public fun setBpmnParseFactory (Lorg/camunda/bpm/engine/impl/cfg/BpmnParseFactory;)Lorg/camunda/bpm/engine/impl/cfg/ProcessEngineConfigurationImpl;
 }
 
 public final class ru/tinkoff/top/camunda/delegator/delegates/DelegateException : java/lang/RuntimeException {
@@ -454,7 +437,7 @@ public final class ru/tinkoff/top/camunda/delegator/parser/DefaultDelegatorBpmnP
 public class ru/tinkoff/top/camunda/delegator/parser/DelegatorCamundaBpmnParse : org/camunda/bpm/engine/impl/bpmn/parser/BpmnParse {
 	public fun <init> (Lorg/camunda/bpm/engine/impl/bpmn/parser/BpmnParser;)V
 	public fun parseExecutionListener (Lorg/camunda/bpm/engine/impl/util/xml/Element;Ljava/lang/String;)Lorg/camunda/bpm/engine/delegate/ExecutionListener;
-	public fun parseServiceTaskLike (Ljava/lang/String;Lorg/camunda/bpm/engine/impl/util/xml/Element;Lorg/camunda/bpm/engine/impl/pvm/process/ScopeImpl;)Lorg/camunda/bpm/engine/impl/pvm/process/ActivityImpl;
+	public fun parseServiceTaskLike (Lorg/camunda/bpm/engine/impl/pvm/process/ActivityImpl;Ljava/lang/String;Lorg/camunda/bpm/engine/impl/util/xml/Element;Lorg/camunda/bpm/engine/impl/util/xml/Element;Lorg/camunda/bpm/engine/impl/pvm/process/ScopeImpl;)V
 }
 
 public final class ru/tinkoff/top/camunda/delegator/servicetask/CustomClassDelegateActivityBehavior : org/camunda/bpm/engine/impl/bpmn/behavior/ClassDelegateActivityBehavior {

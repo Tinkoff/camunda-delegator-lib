@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:filename")
+
 package ru.tinkoff.top.camunda.delegator.delegates.resolvers
 
 import org.springframework.core.MethodParameter
