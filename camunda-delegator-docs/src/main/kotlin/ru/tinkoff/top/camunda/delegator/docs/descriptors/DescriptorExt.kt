@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:filename")
+
 package ru.tinkoff.top.camunda.delegator.docs.descriptors
 
 import org.springframework.core.annotation.AnnotatedElementUtils

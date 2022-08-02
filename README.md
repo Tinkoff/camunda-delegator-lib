@@ -7,9 +7,9 @@
 
 ## Requirements
 
-1. Project complied with Camunda version 7.14.
-2. Spring Boot 2.5.2
-3. Kotlin version 1.5
+1. Project complied with Camunda version 7.17.
+2. Spring Boot 2.6.4
+3. Kotlin version 1.7.10
 
 ## Installation
 

@@ -7,7 +7,6 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import io.kotest.matchers.string.shouldStartWith
 import org.camunda.bpm.engine.delegate.DelegateExecution
-import org.junit.Assert.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.kotlin.any
@@ -19,7 +18,6 @@ import ru.tinkoff.top.camunda.delegator.annotations.CamundaDelegate
 import ru.tinkoff.top.camunda.delegator.annotations.DelegateAliases
 import ru.tinkoff.top.camunda.delegator.annotations.DelegateExecute
 import ru.tinkoff.top.camunda.delegator.delegates.DelegateInformation
-import ru.tinkoff.top.camunda.delegator.delegates.JavaDelegateWithParams
 import ru.tinkoff.top.camunda.delegator.delegates.executors.DelegateExecutor
 import ru.tinkoff.top.camunda.delegator.delegates.executors.interceptors.DelegateInterceptor
 
@@ -39,7 +37,6 @@ class DelegateMethodHandlerRegisterTest {
 
     @Test
     fun `check register delegates`() {
-
         val register = DelegateMethodHandlerRegister(emptyList(), mainDelegateExecutor)
         register.initDelegates(listOf(TestDelegate()))
 
@@ -70,7 +67,6 @@ class DelegateMethodHandlerRegisterTest {
 
     @Test
     fun `check register java delegates`() {
-
         val register = DelegateMethodHandlerRegister(emptyList(), mainDelegateExecutor)
         register.initDelegates(listOf(ru.tinkoff.top.camunda.delegator.delegates.JavaDelegateWithParams()))
 
@@ -130,8 +126,8 @@ class DelegateMethodHandlerRegisterTest {
         val delegateBySecondAlias = register.getDelegateMethodHandler("alias2")
         delegateBySecondAlias shouldNotBe null
 
-        assertEquals(delegateByFullName, delegateByFirstAlias)
-        assertEquals(delegateByFirstAlias, delegateBySecondAlias)
+        delegateByFullName shouldBe delegateByFirstAlias
+        delegateByFirstAlias shouldBe delegateBySecondAlias
     }
 
     @CamundaDelegate

@@ -1,11 +1,12 @@
 [versions]
-kotlin = "1.5.31"
-kotlinter = "3.6.0"
-kotvalidator = "0.8.0"
-klogging = "2.0.11"
-camunda = "7.14.0"
-springboot = "2.5.2"
-springdm = "1.0.11.RELEASE"
+kotlin = "1.7.10"
+kotcoroutines = "1.6.4"
+kotlinter = "3.11.1"
+kotvalidator = "0.11.0"
+klogging = "2.1.23"
+camunda = "7.17.0"
+springboot = "2.6.4"
+springdm = "1.0.12.RELEASE"
 
 [libraries]
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -13,15 +14,14 @@ kotlin-allopen = { module = "org.jetbrains.kotlin:kotlin-allopen", version.ref =
 dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "kotlin" }
 dokka-kotlin-as-java = { module = "org.jetbrains.dokka:kotlin-as-java-plugin", version.ref = "kotlin" }
 
-kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 kotlin-binary-validator = { module = "org.jetbrains.kotlinx:binary-compatibility-validator", version.ref = "kotvalidator" }
 kotlin-logging = { module = "io.github.microutils:kotlin-logging-jvm", version.ref = "klogging" }
 
-springdoc-kotlin = { module = "org.springdoc:springdoc-openapi-kotlin", version = "1.5.10" }
+springdoc-kotlin = { module = "org.springdoc:springdoc-openapi-kotlin", version = "1.6.9" }
 
 
-spring-context = { module = "org.springframework:spring-context"}
+spring-context = { module = "org.springframework:spring-context" }
 
 spring-boot-starter = { module = "org.springframework.boot:spring-boot-starter" }
 spring-boot-autoconfigure = { module = "org.springframework.boot:spring-boot-autoconfigure" }
@@ -38,19 +38,18 @@ camunda-engine-spring = { module = "org.camunda.bpm:camunda-engine-spring", vers
 camunda-spring-boot-starter = { module = "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter", version.ref = "camunda" }
 camunda-spring-boot-starter-test = { module = "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-test", version.ref = "camunda" }
 
-h2 = { module = "com.h2database:h2"}
-assertj-core = { module = "org.assertj:assertj-core"}
-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version ="4.0.0" }
-camunda-bpm-assert = { module = "org.camunda.bpm.assert:camunda-bpm-assert", version = "13.0.0" }
-camunda-bpm-mockito = { module = "org.camunda.bpm.extension.mockito:camunda-bpm-mockito", version = "5.16.0" }
-camunda-bpm-process-test-coverage = { module = "org.camunda.bpm.extension:camunda-bpm-process-test-coverage", version = "0.4.0" }
-kotest-assertions-core-jvm = { module = "io.kotest:kotest-assertions-core-jvm", version = "5.0.3" }
+h2 = { module = "com.h2database:h2" }
+assertj-core = { module = "org.assertj:assertj-core" }
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version = "4.0.0" }
+camunda-bpm-assert = { module = "org.camunda.bpm:camunda-bpm-assert", version.ref = "camunda" }
+camunda-bpm-process-test-coverage = { module = "org.camunda.community.process_test_coverage:camunda-process-test-coverage-junit5-platform-7", version = "2.0.0" }
+camunda-bpm-junit5 = { module = "org.camunda.bpm:camunda-bpm-junit5", version.ref = "camunda" }
+kotest-assertions-core-jvm = { module = "io.kotest:kotest-assertions-core-jvm", version = "5.4.1" }
 
 kotlinter-gradle = { module = "org.jmailen.gradle:kotlinter-gradle", version.ref = "kotlinter" }
 
 junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api" }
-junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params"}
-junit-vintage-engine = { module = "org.junit.vintage:junit-vintage-engine"}
+junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

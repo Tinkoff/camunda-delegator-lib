@@ -1,12 +1,8 @@
 package ru.tinkoff.top.camunda.delegator.springboot
 
 import org.camunda.bpm.engine.impl.cfg.BpmnParseFactory
-import org.camunda.bpm.engine.impl.cfg.CompositeProcessEnginePlugin
-import org.camunda.bpm.engine.impl.cfg.ProcessEngineConfigurationImpl
-import org.camunda.bpm.engine.impl.cfg.ProcessEnginePlugin
 import org.camunda.bpm.engine.impl.el.ExpressionManager
 import org.camunda.bpm.spring.boot.starter.CamundaBpmAutoConfiguration
-import org.camunda.bpm.spring.boot.starter.util.CamundaSpringBootUtil
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.actuate.autoconfigure.info.ConditionalOnEnabledInfoContributor
 import org.springframework.boot.actuate.autoconfigure.info.InfoContributorAutoConfiguration
@@ -20,7 +16,6 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Import
 import org.springframework.core.annotation.Order
 import ru.tinkoff.top.camunda.delegator.config.DelegatorBpmnParserCamundaPlugin
-import ru.tinkoff.top.camunda.delegator.config.SpringProcessEngineBpmnParseConfiguration
 import ru.tinkoff.top.camunda.delegator.delegates.executors.DelegateExecutor
 import ru.tinkoff.top.camunda.delegator.delegates.executors.interceptors.DelegateInterceptor
 import ru.tinkoff.top.camunda.delegator.delegates.factory.MethodHandlerDelegateFactory
@@ -53,17 +48,6 @@ const val DELEGATOR_BPMN_PARSE_FACTORY = "delegatorBpmnParseFactory"
 )
 @AutoConfigureBefore(CamundaBpmAutoConfiguration::class)
 class CamundaDelegatorAutoConfiguration {
-
-    @Bean
-    @ConditionalOnMissingBean(ProcessEngineConfigurationImpl::class)
-    fun processEngineConfigurationImpl(
-        processEnginePlugins: List<ProcessEnginePlugin>
-    ): ProcessEngineConfigurationImpl {
-        val configuration =
-            CamundaSpringBootUtil.initCustomFields(SpringProcessEngineBpmnParseConfiguration())
-        configuration.processEnginePlugins.add(CompositeProcessEnginePlugin(processEnginePlugins))
-        return configuration
-    }
 
     @Bean
     @ConditionalOnProperty(

@@ -8,7 +8,6 @@ import ru.tinkoff.top.camunda.delegator.delegates.executors.interceptors.output.
 @CamundaDelegate("kotlinSimpleDelegate")
 class KotlinSimpleDelegate {
 
-    @Suppress("UnusedPrivateMember", "FunctionOnlyReturningConstant")
     @DelegateExecute
     @SingleResultVariable("delegateResult")
     fun params(

@@ -14,7 +14,6 @@ import kotlin.reflect.jvm.javaMethod
 class DelegateMetaInformationTest {
 
     @CamundaDelegate
-    @Suppress("UnusedPrivateMember")
     private class TestDelegate {
 
         @DelegateExecute
@@ -100,7 +99,6 @@ class DelegateMetaInformationTest {
 
     @Test
     fun `when camunda annotation delegate name is present then override class name`() {
-
         @CamundaDelegate("otherDelegateName")
         class TestDelegate {
 
@@ -124,7 +122,8 @@ class DelegateMetaInformationTest {
     @Test
     fun `when camunda method  annotation delegate name is present then override class name`() {
         val meta = DelegateMetaInformation(
-            TestDelegate::class.java, TestDelegate::testOverrideMethodName.javaMethod!!
+            TestDelegate::class.java,
+            TestDelegate::testOverrideMethodName.javaMethod!!
         )
 
         with(meta) {
