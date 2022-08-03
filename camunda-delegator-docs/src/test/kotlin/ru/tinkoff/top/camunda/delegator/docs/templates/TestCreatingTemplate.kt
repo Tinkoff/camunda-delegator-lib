@@ -2,8 +2,8 @@ package ru.tinkoff.top.camunda.delegator.docs.templates
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.junit.Assert
-import org.junit.Test
+import io.kotest.matchers.shouldBe
+import org.junit.jupiter.api.Test
 import org.springframework.core.io.ClassPathResource
 import ru.tinkoff.top.camunda.delegator.delegates.DelegateMetaInformation
 
@@ -23,7 +23,7 @@ class TestCreatingTemplate {
         val templateFile = ClassPathResource("/delegate-templates/demoDelegateTemplate.json")
         val template = objectMapper.readTree(templateFile.url)
 
-        Assert.assertEquals(template, objectMapper.valueToTree(generatedTemplates))
+        template shouldBe objectMapper.valueToTree(generatedTemplates)
     }
 
     @Test
@@ -46,7 +46,7 @@ class TestCreatingTemplate {
         val templateFile = ClassPathResource("/delegate-templates/demoDelegateTemplateWithoutVisible.json")
         val template = objectMapper.readTree(templateFile.url)
 
-        Assert.assertEquals(template, objectMapper.valueToTree(generatedTemplates))
+        template shouldBe objectMapper.valueToTree(generatedTemplates)
     }
 
     @Test
@@ -81,6 +81,6 @@ class TestCreatingTemplate {
         val templateFile = ClassPathResource("/delegate-templates/templateWithChoices.json")
         val template = objectMapper.readTree(templateFile.url)
 
-        Assert.assertEquals(template, objectMapper.valueToTree(generatedTemplates))
+        template shouldBe objectMapper.valueToTree(generatedTemplates)
     }
 }

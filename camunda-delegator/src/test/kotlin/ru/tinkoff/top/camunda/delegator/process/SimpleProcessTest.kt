@@ -7,13 +7,11 @@ import org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.execute
 import org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.externalTask
 import org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.job
 import org.camunda.bpm.engine.test.mock.Mocks
-import org.camunda.bpm.extension.process_test_coverage.junit.rules.ProcessCoverageInMemProcessEngineConfiguration
-import org.camunda.bpm.extension.process_test_coverage.junit.rules.TestCoverageProcessEngineRule
-import org.camunda.bpm.extension.process_test_coverage.junit.rules.TestCoverageProcessEngineRuleBuilder
-import org.junit.Before
-import org.junit.ClassRule
-import org.junit.Rule
-import org.junit.Test
+import org.camunda.community.process_test_coverage.engine.platform7.ProcessCoverageInMemProcessEngineConfiguration
+import org.camunda.community.process_test_coverage.junit5.platform7.ProcessEngineCoverageExtension
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.RegisterExtension
 import org.mockito.kotlin.eq
 import org.mockito.kotlin.isNull
 import org.mockito.kotlin.spy
@@ -34,7 +32,7 @@ class SimpleProcessTest {
     private val javaDelegate = spy(ru.tinkoff.top.camunda.delegator.delegates.JavaSimpleDelegate())
     private val kotlinDelegate = spy(KotlinSimpleDelegate())
 
-    @Before
+    @BeforeEach
     fun initDelegates() {
         delegateMethodHandlerRegister.initDelegates(
             listOf(javaDelegate, kotlinDelegate)
@@ -45,7 +43,7 @@ class SimpleProcessTest {
 
     @Test
     fun testCallDelegateInSimpleProcess() {
-        val instance = processEngineRule.runtimeService.startProcessInstanceByKey("simpleProcess")
+        val instance = coverageExtension.processEngine.runtimeService.startProcessInstanceByKey("simpleProcess")
 
         assertThat(instance).isStarted
         execute(job("kotlinDelegateActivity"))
@@ -78,7 +76,8 @@ class SimpleProcessTest {
                         DelegateExecutionResolver()
                     )
                 ),
-                SingleResultExecutionWriter(), MultipleResultExecutionWriter()
+                SingleResultExecutionWriter(),
+                MultipleResultExecutionWriter()
             ),
             DelegateExecutorImpl()
         )
@@ -87,11 +86,11 @@ class SimpleProcessTest {
             it.bpmnParseFactory = DefaultDelegatorBpmnParseFactory()
         }
 
-        @Rule
-        @ClassRule
         @JvmField
-        val processEngineRule: TestCoverageProcessEngineRule = TestCoverageProcessEngineRuleBuilder
-            .create(camundaConfiguration.buildProcessEngine())
+        @RegisterExtension
+        var coverageExtension: ProcessEngineCoverageExtension = ProcessEngineCoverageExtension
+            .builder(camundaConfiguration)
+            .assertClassCoverageAtLeast(0.5)
             .build()
     }
 }

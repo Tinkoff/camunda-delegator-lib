@@ -27,7 +27,6 @@ class CustomServiceTaskDelegateExpressionActivityBehavior(
 ) : ServiceTaskDelegateExpressionActivityBehavior(expression, fieldDeclarations) {
 
     override fun performExecution(execution: ActivityExecution) {
-        fieldDeclarations.size
         val callable: Callable<Void?> = Callable {
             // Note: we can't cache the result of the expression, because the
             // execution can change: eg. delegateExpression='${mySpringBeanFactory.randomSpringBean()}'

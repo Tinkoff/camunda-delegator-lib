@@ -2,8 +2,6 @@ package ru.tinkoff.top.camunda.delegator.delegates.resolvers
 
 import io.kotest.matchers.shouldBe
 import org.camunda.bpm.engine.delegate.DelegateExecution
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.any
 import org.mockito.kotlin.eq
@@ -18,7 +16,6 @@ import ru.tinkoff.top.camunda.delegator.annotations.DelegateExecute
 import ru.tinkoff.top.camunda.delegator.annotations.Variable
 import kotlin.reflect.jvm.javaMethod
 
-@Suppress("UnusedPrivateMember")
 class ContextVariableResolverTest {
 
     private val context = mock<DelegateExecution>()
@@ -37,7 +34,7 @@ class ContextVariableResolverTest {
         val resolver = ContextVariableResolver()
 
         val parameter = MethodParameter(TestDelegate::test.javaMethod!!, 0)
-        assertFalse(resolver.supportsParameter(parameter))
+        resolver.supportsParameter(parameter) shouldBe false
     }
 
     @Test
@@ -58,7 +55,7 @@ class ContextVariableResolverTest {
         val parameter = MethodParameter(TestDelegate::test.javaMethod!!, 0).also {
             it.initParameterNameDiscovery(DefaultParameterNameDiscoverer())
         }
-        assertTrue(resolver.supportsParameter(parameter))
+        resolver.supportsParameter(parameter) shouldBe true
 
         val argument = resolver.resolveArgument(context, parameter)
 
@@ -85,7 +82,7 @@ class ContextVariableResolverTest {
         val parameter = MethodParameter(TestDelegate::test.javaMethod!!, 0).also {
             it.initParameterNameDiscovery(DefaultParameterNameDiscoverer())
         }
-        assertTrue(resolver.supportsParameter(parameter))
+        resolver.supportsParameter(parameter) shouldBe true
 
         val argument = resolver.resolveArgument(context, parameter)
 
@@ -112,7 +109,7 @@ class ContextVariableResolverTest {
         val parameter = MethodParameter(TestDelegate::test.javaMethod!!, 0).also {
             it.initParameterNameDiscovery(DefaultParameterNameDiscoverer())
         }
-        assertTrue(resolver.supportsParameter(parameter))
+        resolver.supportsParameter(parameter) shouldBe true
 
         val argument = resolver.resolveArgument(context, parameter)
 
@@ -139,7 +136,7 @@ class ContextVariableResolverTest {
         val parameter = MethodParameter(TestDelegate::test.javaMethod!!, 0).also {
             it.initParameterNameDiscovery(DefaultParameterNameDiscoverer())
         }
-        assertTrue(resolver.supportsParameter(parameter))
+        resolver.supportsParameter(parameter) shouldBe true
 
         val argument = resolver.resolveArgument(context, parameter)
 
@@ -166,7 +163,7 @@ class ContextVariableResolverTest {
         val parameter = MethodParameter(TestDelegate::test.javaMethod!!, 0).also {
             it.initParameterNameDiscovery(DefaultParameterNameDiscoverer())
         }
-        assertTrue(resolver.supportsParameter(parameter))
+        resolver.supportsParameter(parameter) shouldBe true
 
         val argument = resolver.resolveArgument(context, parameter)
 

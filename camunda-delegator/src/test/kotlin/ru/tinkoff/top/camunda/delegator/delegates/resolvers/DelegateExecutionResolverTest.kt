@@ -2,8 +2,6 @@ package ru.tinkoff.top.camunda.delegator.delegates.resolvers
 
 import io.kotest.matchers.shouldBe
 import org.camunda.bpm.engine.delegate.DelegateExecution
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.mock
 import org.springframework.core.MethodParameter
@@ -11,7 +9,6 @@ import ru.tinkoff.top.camunda.delegator.annotations.CamundaDelegate
 import ru.tinkoff.top.camunda.delegator.annotations.DelegateExecute
 import kotlin.reflect.jvm.javaMethod
 
-@Suppress("UnusedPrivateMember")
 class DelegateExecutionResolverTest {
 
     @Test
@@ -28,7 +25,7 @@ class DelegateExecutionResolverTest {
         val resolver = DelegateExecutionResolver()
 
         val parameter = MethodParameter(TestDelegate::test.javaMethod!!, 0)
-        assertFalse(resolver.supportsParameter(parameter))
+        resolver.supportsParameter(parameter) shouldBe false
     }
 
     @Test
@@ -45,7 +42,7 @@ class DelegateExecutionResolverTest {
         val resolver = DelegateExecutionResolver()
 
         val parameter = MethodParameter(TestDelegate::test.javaMethod!!, 0)
-        assertTrue(resolver.supportsParameter(parameter))
+        resolver.supportsParameter(parameter) shouldBe true
 
         val context = mock<DelegateExecution>()
         val resolvedArgument = resolver.resolveArgument(context, parameter)
