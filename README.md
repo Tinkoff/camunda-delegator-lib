@@ -87,6 +87,7 @@ class ProductGeneratorDelegate {
     }
 }
 ```
+[Camunda test example](https://github.com/Tinkoff/camunda-delegator-lib/blob/main/camunda-delegator/src/test/kotlin/ru/tinkoff/top/camunda/delegator/process/SimpleProcessTest.kt)
 
 See [wiki](https://github.com/TinkoffCreditSystems/camunda-delegator-lib/wiki/How-to-write-delegates) for more information.
 
